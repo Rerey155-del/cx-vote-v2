@@ -10,7 +10,6 @@ Route::get('/', function () {
 
 Route::prefix('absensi')->group(function () {
     Route::get('/', [AbsensiController::class, 'index'])->name('absensi');
-    Route::get('/anggota-aktif', [AbsensiController::class, 'anggota_aktif'])->name('absensi.anggota-aktif');
     Route::get('/anggota-muda', [AbsensiController::class, 'anggota_muda'])->name('absensi.anggota-muda');
     Route::get('/anggota-luar-biasa', [AbsensiController::class, 'anggota_luar_biasa'])->name('absensi.anggota-luar-biasa');
     Route::get('/lainnya', [AbsensiController::class, 'lainnya'])->name('absensi.lainnya');

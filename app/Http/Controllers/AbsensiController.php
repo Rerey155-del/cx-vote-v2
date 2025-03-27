@@ -11,11 +11,6 @@ class AbsensiController extends Controller
         return view('absensi.absensi');
     }
 
-    public function anggota_aktif()
-    {
-        return view('absensi');
-    }
-
     public function anggota_muda()
     {
         return view('absensi');
