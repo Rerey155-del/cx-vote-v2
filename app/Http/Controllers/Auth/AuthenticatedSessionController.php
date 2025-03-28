@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -22,9 +25,23 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->validate([
+            'name' => ['required', 'string'],
+            'password' => ['required', 'string'],
+        ]);
+
+        // Mencari user tanpa memperhatikan huruf besar/kecil
+        $user = User::whereRaw('LOWER(name) = ?', [Str::lower($request->name)])->first();
+
+        if (!$user || $user->password !== $request->password) {
+            throw ValidationException::withMessages([
+                'name' => trans('auth.failed'),
+            ]);
+        }
+
+        Auth::login($user);
 
         $request->session()->regenerate();
 
