@@ -7,10 +7,9 @@
     <form method="POST" action="">
         @csrf
 
-        <!-- Kode CX -->
+        <!-- Lembaga -->
         <div>
-            <x-input-label for="kode_cx" :value="__('Kode CX')" class="mt-8"/>
-            <x-text-input id="kode_cx" class="block mt-1 w-full" type="text" name="kode_cx" :value="old('kode_cx')" required autofocus autocomplete="kode_cx" />
+            <x-input-label for="lembaga" :value="__('Lembaga')" class="mt-8"/>
             <x-input-error :messages="$errors->get('kode_cx')" class="mt-2" />
         </div>
 

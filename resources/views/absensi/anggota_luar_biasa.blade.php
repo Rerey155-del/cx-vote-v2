@@ -7,12 +7,11 @@
     <form method="POST" action="">
         @csrf
 
-        <!-- Lembaga -->
+        <!-- Kode CX -->
         <div>
-            <x-input-label for="lembaga" :value="__('Lembaga')" class="mt-8"/>
-            <x-text-input id="lembaga" class="block mt-1 w-full" type="text" name="lembaga" :value="old('lembaga')" required autofocus autocomplete="lembaga" />
-
-            <x-input-error :messages="$errors->get('lembaga')" class="mt-2" />
+            <x-input-label for="kode_cx" :value="__('Kode CX')" class="mt-8"/>
+            <x-text-input id="kode_cx" class="block mt-1 w-full" type="text" name="kode_cx" :value="old('kode_cx')" required autofocus autocomplete="kode_cx" />
+            <x-input-error :messages="$errors->get('kode_cx')" class="mt-2" />
         </div>
 
         <!-- Name -->
