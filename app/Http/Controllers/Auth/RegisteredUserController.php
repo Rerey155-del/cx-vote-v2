@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -32,13 +33,14 @@ class RegisteredUserController extends Controller
         $request->validate([
             'kode_cx' => ['required', 'string', 'max:5'],
             'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $randomPassword = Str::lower(Str::random(5));
 
         $user = User::create([
             'kode_cx' => $request->kode_cx,
             'name' => $request->name,
-            'password' => Hash::make($request->password),
+            'password' => $randomPassword,
         ]);
 
         event(new Registered($user));
