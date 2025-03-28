@@ -13,16 +13,16 @@ class AbsensiController extends Controller
 
     public function anggota_muda()
     {
-        return view('absensi');
+        return view('absensi.anggota_muda');
     }
 
     public function anggota_luar_biasa()
     {
-        return view('absensi');
+        return view('absensi.anggota_luar_biasa');
     }
 
     public function lainnya()
     {
-        return view('absensi');
+        return view('absensi.lainnya');
     }
 }

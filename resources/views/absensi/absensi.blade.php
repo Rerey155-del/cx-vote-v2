@@ -9,21 +9,21 @@
         </a>
 
         <a
-            href="{{route('register')}}"
+            href="{{route('absensi.anggota-muda')}}"
             class="border-4 border-orange-400 rounded-lg px-4 py-2 font-semibold hover:bg-orange-400 hover:text-white transition delay-75 mr-8"
         >
             Anggota Muda
         </a>
 
         <a
-            href="{{route('register')}}"
+            href="{{route('absensi.anggota-luar-biasa')}}"
             class="border-4 border-orange-400 rounded-lg px-4 py-2 font-semibold hover:bg-orange-400 hover:text-white transition delay-75 mr-8"
         >
             Anggota Luar Biasa
         </a>
 
         <a
-            href="{{route('register')}}"
+            href="{{route('absensi.lainnya')}}"
             class="border-4 border-orange-400 rounded-lg px-4 py-2 font-semibold hover:bg-orange-400 hover:text-white transition delay-75 mr-8"
         >
             Lembaga Lain
