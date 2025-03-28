@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kode_cx');
             $table->string('name');
             $table->string('password');
+            $table->boolean('role')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
