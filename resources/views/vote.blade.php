@@ -25,21 +25,56 @@
         <div class="flex justify-center">
             <div class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex justify-center flex-col">
                 <div class="w-80 h-80">
-                    <img src="{{ asset('img/Jimmy.jpg') }}" alt="Kandidat" class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
+                    <img src="{{ asset('img/Jimmy.jpg') }}" alt="Kandidat"
+                        class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
                 </div>
 
                 <h4 class="text-xl font-semibold my-8">Kandidat 1 - Kandidat 2</h4>
 
                 <!-- Modal toggle -->
-                <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-                    class="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button">
-                    Toggle modal
-                </button>
+                <x-modal-button onclick="openModal()">
+                    Toggle Modal
+                </x-modal-button>
+
+                <div id="popup-modal"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+
+                    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all">
+                        <button onclick="closeModal()"
+                            class="absolute top-3 right-3 text-gray-400 hover:text-gray-900">
+                            ✖
+                        </button>
+                        <h3 class="text-lg font-semibold text-gray-700">Are you sure?</h3>
+                        <p class="text-gray-500">Do you want to proceed with this action?</p>
+                        <div class="flex justify-end space-x-3 mt-4">
+                            <button
+                                class="px-4 py-2 bg-red-600 text-white rounded-lg">
+                                Yes
+                            </button>
+                            <button onclick="closeModal()"
+                                class="px-4 py-2 bg-gray-200 rounded-lg">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-
-
         </div>
-
     </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('popup-modal');
+            modal.classList.remove('opacity-0', 'scale-90', 'invisible');
+            modal.classList.add('opacity-100', 'scale-100', 'visible');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('popup-modal');
+            modal.classList.remove('opacity-100', 'scale-100', 'visible');
+            modal.classList.add('opacity-0', 'scale-90', 'invisible');
+        }
+    </script>
 </x-app-layout>
