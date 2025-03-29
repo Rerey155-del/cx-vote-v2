@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
@@ -16,16 +17,24 @@ Route::prefix('absensi')->group(function () {
     Route::get('/lainnya', [AbsensiController::class, 'lainnya'])->name('absensi.lainnya');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/vote', [VoteController::class, 'index'])->name('vote');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+    Route::get('/dashboard/candiate', [AdminController::class, 'candidate'])->name('dashboard-candidate');
+
+    Route::get('/dashboard/attendance', [AdminController::class, 'attendance'])->name('dashboard-attendance');
+
+    Route::get('/dashboard/voters', [AdminController::class, 'voters'])->name('dashboard-voters');
+
+    Route::get('/dashboard/report', [AdminController::class, 'report'])->name('dashboard-report');
 });
 
 require __DIR__ . '/auth.php';

@@ -8,26 +8,31 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $title = 'Dashboard';
+        return view('admin.dashboard', compact('title'));
     }
 
     public function candidate()
     {
-        return view('admin.candidate');
+        $title = 'Candidate';
+        return view('admin.candidate', compact('title'));
     }
 
     public function attendance()
     {
-        return view('admin.attendance');
+        $title = 'Attendance';
+        return view('admin.attendance', compact('title'));
     }
 
     public function voters()
     {
-        return view('admin.voters');
+        $title = 'Voters';
+        return view('admin.voters', compact('title'));
     }
 
     public function report()
     {
-        return view('admin.report');
+        $title = 'Report';
+        return view('admin.report', compact('title'));
     }
 }
