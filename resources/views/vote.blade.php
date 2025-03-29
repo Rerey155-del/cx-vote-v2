@@ -18,11 +18,12 @@
     </div>
 
     <div class="text-center pt-10 w-full mb-32 bg-white">
-        <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
 
+        <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="flex justify-around px-20">
+        <div class="grid grid-cols-2 px-20 gap-6">
+            {{-- foreach data kandidat--}}
             <div class="flex justify-center">
                 <div
                     class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center">
@@ -46,7 +47,7 @@
                     </div>
 
                     <div id="popup-modal"
-                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+                        class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
 
                         <!-- Modal Box -->
                         <div
@@ -94,7 +95,8 @@
 
                                 <!-- Thumbnail -->
                                 <div class="flex flex-col justify-center space-y-2">
-                                    <div class="w-24 h-24 overflow-hidden shadow-lg shadow-orange-400 bg-transparent rounded-lg">
+                                    <div
+                                        class="w-24 h-24 overflow-hidden shadow-lg shadow-orange-400 bg-transparent rounded-lg">
                                         <img src="{{ asset('img/Jimmy.jpg') }}" alt="Thumb1"
                                             class="w-full h-full shadow-md cursor-pointer object-cover">
                                     </div>
@@ -109,10 +111,54 @@
 
                             <!-- Tombol Pilih -->
                             <div class="flex justify-center mt-6">
-                                <button
-                                    class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-700">
+                                <x-modal-button
+                                    onclick="openOption()"
+                                    class="px-6 py-2 font-semibold">
                                     Pilih
-                                </button>
+                                </x-modal-button>
+                            </div>
+
+                            <div id="popup-option"
+                                class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+
+                                <!-- Modal Box -->
+                                <div
+                                    class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
+
+                                    <!-- Tombol Close -->
+                                    <button onclick="closeOption()"
+                                        class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Konten Modal -->
+                                    <div class="text-center">
+                                        <h4 class="text-lg font-bold mb-6">Apakah Anda Yakin Ingin Memilih Kandidat Ini?</h4>
+
+                                        <div class="flex justify-center space-x-4">
+                                            <div class="">
+                                                <x-danger-button
+                                                onclick="closeOption()"
+                                                class="rounded-3xl"
+                                            >
+                                                {{ __('Batal') }}
+                                            </x-danger-button>
+                                            </div>
+
+                                            <div class="w-fit">
+                                                <x-primary-button
+                                                class="rounded-3xl bg-blue-500"
+                                            >
+                                                {{ __('Yakin') }}
+                                            </x-primary-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,27 +188,121 @@
                     </div>
 
                     <div id="popup-modal"
-                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+                        class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
 
+                        <!-- Modal Box -->
                         <div
-                            class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all">
-                            <button onclick="closeModal()" class="absolute top-3 right-3 hover:text-red-600">
-                                ✖
+                            class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-10 relative transform transition-all">
+
+                            <!-- Tombol Close -->
+                            <button onclick="closeModal()"
+                                class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
                             </button>
-                            <h3 class="text-lg font-semibold text-gray-700">Are you sure?</h3>
-                            <p class="text-gray-500">Do you want to proceed with this action?</p>
-                            <div class="flex justify-end space-x-3 mt-4">
-                                <button class="px-4 py-2 bg-red-600 text-white rounded-lg">
-                                    Yes
-                                </button>
-                                <button onclick="closeModal()" class="px-4 py-2 bg-gray-200 rounded-lg">
-                                    Cancel
-                                </button>
+
+                            <!-- Konten Modal -->
+                            <div class="flex flex-col md:flex-row space-x-4">
+
+                                <!-- Gambar Utama -->
+                                <div class="w-full md:w-1/2">
+                                    <img src="{{ asset('img/Jimmy.jpg') }}" alt="Kandidat"
+                                        class="rounded-xl shadow-md w-full object-cover">
+                                </div>
+
+                                <!-- Detail Kandidat -->
+                                <div class="w-full md:w-1/2  p-5 rounded-xl shadow-xl">
+                                    <h3 class="text-lg font-semibold text-gray-900">01. Lorem - Ipsum</h3>
+
+                                    <div class="text-left mt-2">
+                                        <h4 class="font-semibold mb-1">Visi:</h4>
+                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur. Nisi
+                                            lectus est commodo dolor.</p>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <h4 class="font-semibold text-left">Misi:</h4>
+                                        <ul class="list-decimal pl-5 text-sm text-left">
+                                            <li>Lorem ipsum dolor sit amet consectetur.</li>
+                                            <li>Eros feugiat semper lacus quis nam risus vitae.</li>
+                                            <li>Est tortor odio tempus sem ac mattis.</li>
+                                            <li>Penatibus vulputate commodo cursus.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Thumbnail -->
+                                <div class="flex flex-col justify-center space-y-2">
+                                    <div
+                                        class="w-24 h-24 overflow-hidden shadow-lg shadow-orange-400 bg-transparent rounded-lg">
+                                        <img src="{{ asset('img/Jimmy.jpg') }}" alt="Thumb1"
+                                            class="w-full h-full shadow-md cursor-pointer object-cover">
+                                    </div>
+
+                                    <div class="w-24 h-24 overflow-hidden">
+                                        <img src="{{ asset('img/Jimmy.jpg') }}" alt="Thumb2"
+                                            class="w-full h-full rounded-lg shadow-md cursor-pointer border-2 border-gray-300 object-cover">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Tombol Pilih -->
+                            <div class="flex justify-center mt-6">
+                                <x-modal-button
+                                    onclick="openOption()"
+                                    class="px-6 py-2 font-semibold">
+                                    Pilih
+                                </x-modal-button>
+                            </div>
+
+                            <div id="popup-option"
+                                class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+
+                                <!-- Modal Box -->
+                                <div
+                                    class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
+
+                                    <!-- Tombol Close -->
+                                    <button onclick="closeOption()"
+                                        class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Konten Modal -->
+                                    <div class="text-center">
+                                        <h4 class="text-lg font-bold mb-6">Apakah Anda Yakin Ingin Memilih Kandidat Ini?</h4>
+
+                                        <div class="flex justify-center space-x-4">
+                                            <div class="">
+                                                <x-danger-button
+                                                onclick="closeOption()"
+                                                class="rounded-3xl"
+                                            >
+                                                {{ __('Batal') }}
+                                            </x-danger-button>
+                                            </div>
+
+                                            <div class="w-fit">
+                                                <x-primary-button
+                                                class="rounded-3xl bg-blue-500"
+                                            >
+                                                {{ __('Yakin') }}
+                                            </x-primary-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -177,6 +317,18 @@
 
         function closeModal() {
             const modal = document.getElementById('popup-modal');
+            modal.classList.remove('opacity-100', 'scale-100', 'visible');
+            modal.classList.add('opacity-0', 'scale-90', 'invisible');
+        }
+
+        function openOption() {
+            const modal = document.getElementById('popup-option');
+            modal.classList.remove('opacity-0', 'scale-90', 'invisible');
+            modal.classList.add('opacity-100', 'scale-100', 'visible');
+        }
+
+        function closeOption() {
+            const modal = document.getElementById('popup-option');
             modal.classList.remove('opacity-100', 'scale-100', 'visible');
             modal.classList.add('opacity-0', 'scale-90', 'invisible');
         }
