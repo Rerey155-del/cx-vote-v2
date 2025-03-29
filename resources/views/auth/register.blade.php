@@ -22,7 +22,7 @@
         </div>
 
         <div class="flex items-center justify-center mt-10 text-center">
-            <x-primary-button class="text-center rounde">
+            <x-primary-button class="text-center rounded-lg">
                 {{ __('ENTER') }}
             </x-primary-button>
         </div>

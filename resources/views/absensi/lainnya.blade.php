@@ -66,8 +66,8 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-center mt-12 text-center">
-            <x-primary-button class="text-center rounde">
+        <div class="flex items-center justify-center mt-12">
+            <x-primary-button class="text-center rounded-lg">
                 {{ __('ENTER') }}
             </x-primary-button>
         </div>

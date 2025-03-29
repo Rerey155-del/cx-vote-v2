@@ -1,14 +1,12 @@
 <x-app-layout>
-    <div class="bg-orange-400 text-white text-center py-48">
+    <div class="bg-orange-400 text-white text-center py-48 flex flex-col items-center">
         <h1 class="text-8xl font-extrabold mb-12">E-Voting</h1>
         <h2 class="text-3xl font-lights">UKM-IT CYBERNETIX</h2>
 
-        <div class="flex justify-center mt-16">
-            <x-primary-button class="border-white bg-orange-400 px-6 py-3 rounded-3xl w-fit">
-                <a href="#marquee">
-                    {{ __('Mulai') }}
-                </a>
-            </x-primary-button>
+        <div class="mt-16 w-fit">
+            <a href="#marquee" class="rounded-3xl border border-white px-6 py-3 hover:bg-orange-500 transition delay-75">
+                {{ __('Mulai') }}
+            </a>
         </div>
     </div>
 
