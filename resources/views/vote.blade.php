@@ -50,7 +50,7 @@
 
                         <!-- Modal Box -->
                         <div
-                            class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-6 relative transform transition-all">
+                            class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-10 relative transform transition-all">
 
                             <!-- Tombol Close -->
                             <button onclick="closeModal()"
@@ -72,18 +72,18 @@
                                 </div>
 
                                 <!-- Detail Kandidat -->
-                                <div class="w-full md:w-1/2 bg-gray-100 p-5 rounded-xl shadow-md">
+                                <div class="w-full md:w-1/2  p-5 rounded-xl shadow-xl">
                                     <h3 class="text-lg font-semibold text-gray-900">01. Lorem - Ipsum</h3>
 
                                     <div class="text-left mt-2">
-                                        <h4 class="font-semibold text-gray-700">Visi:</h4>
-                                        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur. Nisi
+                                        <h4 class="font-semibold mb-1">Visi:</h4>
+                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur. Nisi
                                             lectus est commodo dolor.</p>
                                     </div>
 
                                     <div class="mt-2">
-                                        <h4 class="font-semibold text-gray-700">Misi:</h4>
-                                        <ul class="list-decimal pl-5 text-sm text-gray-600">
+                                        <h4 class="font-semibold text-left">Misi:</h4>
+                                        <ul class="list-decimal pl-5 text-sm text-left">
                                             <li>Lorem ipsum dolor sit amet consectetur.</li>
                                             <li>Eros feugiat semper lacus quis nam risus vitae.</li>
                                             <li>Est tortor odio tempus sem ac mattis.</li>
@@ -94,9 +94,9 @@
 
                                 <!-- Thumbnail -->
                                 <div class="flex flex-col justify-center space-y-2">
-                                    <div class="w-24 h-24 overflow-hidden">
+                                    <div class="w-24 h-24 overflow-hidden shadow-lg shadow-orange-400 bg-transparent rounded-lg">
                                         <img src="{{ asset('img/Jimmy.jpg') }}" alt="Thumb1"
-                                            class="w-full h-full rounded-lg shadow-md cursor-pointer border-2 border-gray-300 object-cover">
+                                            class="w-full h-full shadow-md cursor-pointer object-cover">
                                     </div>
 
                                     <div class="w-24 h-24 overflow-hidden">
