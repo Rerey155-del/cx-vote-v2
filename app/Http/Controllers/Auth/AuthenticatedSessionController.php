@@ -28,16 +28,15 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string'],
+            'kode_cx' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        // Mencari user tanpa memperhatikan huruf besar/kecil
-        $user = User::whereRaw('LOWER(name) = ?', [Str::lower($request->name)])->first();
+        $user = User::where('kode_cx', $request->kode_cx)->first();
 
         if (!$user || $user->password !== $request->password) {
             throw ValidationException::withMessages([
-                'name' => trans('auth.failed'),
+                'kode_cx' => trans('auth.failed'),
             ]);
         }
 
@@ -45,7 +44,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('vote', absolute: false));
     }
 
     /**

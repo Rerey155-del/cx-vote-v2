@@ -9,11 +9,11 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        {{-- Name --}}
+        {{-- Kode CX --}}
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full mb-5" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="kode_cx" :value="__('Kode CX')" />
+            <x-text-input id="kode_cx" class="block mt-1 w-full mb-5" type="text" name="kode_cx" :value="old('kode_cx')" required autofocus autocomplete="kode_cx" />
+            <x-input-error :messages="$errors->get('kode_cx')" class="mt-2" />
         </div>
 
         <!-- Password -->
