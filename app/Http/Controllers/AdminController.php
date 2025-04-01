@@ -15,6 +15,18 @@ class AdminController extends Controller
     public function candidate()
     {
         $title = 'Candidate';
+        return view('admin.candidate.candidate', compact('title'));
+    }
+
+    public function candidate_add()
+    {
+        $title = 'Candidate';
+        return view('admin.candidate.add', compact('title'));
+    }
+
+    public function candidate_store()
+    {
+        $title = 'Candidate';
         return view('admin.candidate', compact('title'));
     }
 

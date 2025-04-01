@@ -29,6 +29,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     Route::get('/dashboard/candiate', [AdminController::class, 'candidate'])->name('dashboard-candidate');
+    Route::get('/dashboard/candiate/add', [AdminController::class, 'candidate_add'])->name('dashboard-candidate-add');
+    // Route::get('/dashboard/candiate/add', [AdminController::class, 'candidate_store'])->name('dashboard-candidate-store');
 
     Route::get('/dashboard/attendance', [AdminController::class, 'attendance'])->name('dashboard-attendance');
 
