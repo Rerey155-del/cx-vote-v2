@@ -31,7 +31,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'kode_cx' => ['required', 'string', 'max:5'],
+            'kode_cx' => ['required', 'string', 'max:7'],
             'name' => ['required', 'string', 'max:255'],
         ]);
 
