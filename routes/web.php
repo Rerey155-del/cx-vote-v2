@@ -7,7 +7,7 @@ use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('absensi');
 });
 
 Route::prefix('absensi')->group(function () {
