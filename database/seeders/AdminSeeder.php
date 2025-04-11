@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => 1,
-                'kode_cx' => '000-000',
+                'kode_cx' => '012-012',
                 'name' => 'Cybernetix',
                 'password' => $randomPassword,
                 'role' => true,
