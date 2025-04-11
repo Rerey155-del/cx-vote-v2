@@ -12,8 +12,13 @@ Route::get('/', function () {
 
 Route::prefix('absensi')->group(function () {
     Route::get('/', [AbsensiController::class, 'index'])->name('absensi');
+
     Route::get('/anggota-muda', [AbsensiController::class, 'anggota_muda'])->name('absensi.anggota-muda');
+    Route::post('/anggota-muda', [AbsensiController::class, 'store_anggota_muda'])->name('absensi.store-anggota-muda');
+
     Route::get('/anggota-luar-biasa', [AbsensiController::class, 'anggota_luar_biasa'])->name('absensi.anggota-luar-biasa');
+    Route::post('/anggota-luar-biasa', [AbsensiController::class, 'store_anggota_luar_biasa'])->name('absensi.store-anggota-luar-biasa');
+
     Route::get('/lainnya', [AbsensiController::class, 'lainnya'])->name('absensi.lainnya');
 });
 

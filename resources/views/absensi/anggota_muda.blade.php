@@ -4,7 +4,7 @@
 
     <p class="text-base">Selamat datang di Musyawarah Besar XIV UKM-IT Cybernetix</p>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{route('absensi.store-anggota-muda')}}">
         @csrf
 
         <!-- Name -->
