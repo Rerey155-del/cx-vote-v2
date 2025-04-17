@@ -4,14 +4,14 @@
 
     <p class="text-base">Selamat datang di Musyawarah Besar XIV UKM-IT Cybernetix</p>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{route('absensi.anggota-luar-biasa')}}">
         @csrf
 
         <!-- Kode CX -->
         <div>
-            <x-input-label for="kode_cx" :value="__('Kode CX')" class="mt-8"/>
-            <x-text-input id="kode_cx" class="block mt-1 w-full" type="text" name="kode_cx" :value="old('kode_cx')" required autofocus autocomplete="kode_cx" />
-            <x-input-error :messages="$errors->get('kode_cx')" class="mt-2" />
+            <x-input-label for="angkatan" :value="__('Angkatan')" class="mt-8"/>
+            <x-text-input id="angkatan" class="block mt-1 w-full" type="number" name="angkatan" :value="old('angkatan')" required autofocus autocomplete="angkatan" />
+            <x-input-error :messages="$errors->get('angkatan')" class="mt-2" />
         </div>
 
         <!-- Name -->

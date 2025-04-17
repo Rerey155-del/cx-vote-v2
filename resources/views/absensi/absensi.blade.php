@@ -23,7 +23,7 @@
         </a>
 
         <a
-            href="{{route('absensi.lainnya')}}"
+            href="{{route('absensi.lembaga_lainnya')}}"
             class="border-4 border-orange-400 rounded-lg px-4 py-2 font-semibold hover:bg-orange-400 hover:text-white transition delay-75 mr-8"
         >
             Lembaga Lain

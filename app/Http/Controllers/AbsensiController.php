@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnggotaLuarBiasa;
 use App\Models\AnggotaMuda;
+use App\Models\LembagaLainnya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -36,10 +38,38 @@ class AbsensiController extends Controller
         return view('absensi.anggota_luar_biasa');
     }
 
-
-
-    public function lainnya()
+    public function store_anggota_luar_biasa(Request $request)
     {
-        return view('absensi.lainnya');
+        $request->validate([
+            'angkatan',
+            'name'
+        ]);
+
+        AnggotaLuarBiasa::create([
+            'angkatan' => $request->angkatan,
+            'name' => $request->name,
+        ]);
+
+        return Redirect::route('absensi');
+    }
+
+    public function lembaga_lainnya()
+    {
+        return view('absensi.lembaga_lainnya');
+    }
+
+    public function store_lembaga_lainnya(Request $request)
+    {
+        $request->validate([
+            'lembaga',
+            'name'
+        ]);
+
+        LembagaLainnya::create([
+            'lembaga' => $request->lembaga,
+            'name' => $request->name,
+        ]);
+
+        return Redirect::route('absensi');
     }
 }

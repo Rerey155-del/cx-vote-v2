@@ -4,7 +4,7 @@
 
     <p class="text-base">Selamat datang di Musyawarah Besar XIV UKM-IT Cybernetix</p>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{route('absensi.store_lembaga_lainnya') }}">
         @csrf
 
         <!-- Lembaga -->
@@ -55,7 +55,7 @@
                     'UKM MAPALA' => 'UKM MAPALA',
                 ],
             ]" class="mt-1" required autofocus />
-            <x-input-error :messages="$errors->get('kode_cx')" class="mt-2" />
+            <x-input-error :messages="$errors->get('lembaga')" class="mt-2" />
         </div>
 
         <!-- Name -->
