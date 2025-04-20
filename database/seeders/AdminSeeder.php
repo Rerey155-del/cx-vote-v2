@@ -17,8 +17,7 @@ class AdminSeeder extends Seeder
         $randomPassword = Str::lower(Str::random(5));
         DB::table('users')->insert([
             [
-                'id' => 1,
-                'kode_cx' => '012-012',
+                'kode_cx' => '000-000',
                 'name' => 'Cybernetix',
                 'password' => $randomPassword,
                 'role' => true,
