@@ -3,18 +3,20 @@
     @foreach ($candidates as $candidate)
     <div class="shadow-xl rounded-2xl flex flex-col items-center justify-center py-8 overflow-hidden text-center">
         <div class="w-60 h-60">
-            <img src="{{asset('img/Jimmy.jpg')}}" alt="" class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
+            <img src="{{url('storage/' .$candidate->image)}}" alt="" class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
         </div>
         <div class="mt-6">
             <h2 class="text-2xl font-bold">{{ strtok($candidate->ketua_name, ' ') }}
                 - {{ strtok($candidate->wakil_name, ' ') }}</h2>
             <p class="mt-2 ">Candidate {{$candidate->nomor_urut}}</p>
             <div class="flex justify-center gap-4 mt-4">
-                <button class="bg-blue-500 hover:bg-blue-400 text-white px-2 py-2 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                      </svg>
-                </button>
+                <a href="{{route('dashboard-candidate-edit', $candidate->id)}}">
+                    <button class="bg-blue-500 hover:bg-blue-400 text-white px-2 py-2 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                        </svg>
+                    </button>
+                </a>
                 <form action="{{ route('dashboard-candidate-delete', $candidate->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kandidat ini?')">
                     @csrf
                     @method('DELETE')
@@ -24,7 +26,6 @@
                         </svg>
                     </button>
                 </form>
-
             </div>
         </div>
     </div>
@@ -35,7 +36,7 @@
             <div class="p-6 flex items-center justify-center rounded-full border-4 border-gray-700 border-dashed">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                </svg>
             </div>
         </div>
     </a>

@@ -37,7 +37,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/candiate', [AdminController::class, 'candidate'])->name('dashboard-candidate');
     Route::get('/dashboard/candiate/add', [AdminController::class, 'candidate_add'])->name('dashboard-candidate-add');
     Route::post('/dashboard/candiate/add', [AdminController::class, 'candidate_store'])->name('dashboard-candidate-store');
-    Route::delete('/candidate/{candidat}', [AdminController::class, 'delete_candidate'])->name('dashboard-candidate-delete');
+    Route::delete('/dashboard/candidate/{candidat}', [AdminController::class, 'delete_candidate'])->name('dashboard-candidate-delete');
+    Route::get('/dashboard/{candidat}/edit', [AdminController::class, 'edit_candidate'])->name('dashboard-candidate-edit');
+    Route::patch('/dashboard/{candidat}', [AdminController::class, 'update_candidate'])->name('dashboard-candidate-update');
 
     Route::get('/dashboard/attendance', [AdminController::class, 'attendance'])->name('dashboard-attendance');
 

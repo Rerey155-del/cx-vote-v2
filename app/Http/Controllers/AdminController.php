@@ -58,6 +58,48 @@ class AdminController extends Controller
         return Redirect::route('dashboard-candidate');
     }
 
+    public function edit_candidate($id)
+    {
+        $title = 'Update Candidate';
+        $candidate = Candidat::findOrFail($id);
+
+        return view('admin.candidate.update', compact('title', 'candidate'));
+    }
+
+    public function update_candidate(Request $request, Candidat $candidat)
+    {
+        $request->validate([
+            'ketua_name' => 'required|string|max:255',
+            'wakil_name' => 'required|string|max:255',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'nomor_urut' => 'required',
+            'image' => 'nullable|image|max:1024',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($candidat->image) {
+                Storage::disk('public')->delete($candidat->image);
+            }
+
+            // Simpan gambar baru
+            $path = $request->file('image')->store('canditates', 'public');
+            $candidat->image = $path;
+        }
+
+        $candidat->update([
+            'ketua_name' => $request->ketua_name,
+            'wakil_name' => $request->wakil_name,
+            'nomor_urut' => $request->nomor_urut,
+            'visi' => $request->visi,
+            'misi' => $request->misi,
+            'image' => $candidat->image ?? $candidat->getOriginal('image'),
+        ]);
+
+        return Redirect::route('dashboard-candidate');
+    }
+
     public function delete_candidate(Candidat $candidat)
     {
         $candidat->delete();
