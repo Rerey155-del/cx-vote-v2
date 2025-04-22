@@ -12,6 +12,7 @@ class AdminController extends Controller
     public function index()
     {
         $title = 'Dashboard';
+
         return view('admin.dashboard', compact('title'));
     }
 
@@ -19,7 +20,7 @@ class AdminController extends Controller
     {
         $title = 'Candidate';
 
-        $candidates = Candidat::all();
+        $candidates = Candidat::orderBy('nomor_urut', 'asc')->get();
 
         return view('admin.candidate.candidate', compact('title', 'candidates'));
     }
@@ -35,7 +36,7 @@ class AdminController extends Controller
         $request->validate([
             'ketua_name' => 'required',
             'wakil_name' => 'required',
-            'nomor_urut' => 'required',
+            'nomor_urut' => 'required|unique:candidats,nomor_urut',
             'visi' => 'required',
             'misi' => 'required',
             'image' => 'required'
@@ -73,7 +74,7 @@ class AdminController extends Controller
             'wakil_name' => 'required|string|max:255',
             'visi' => 'required|string',
             'misi' => 'required|string',
-            'nomor_urut' => 'required',
+            'nomor_urut' => 'required|unique:candidats,nomor_urut,' . $candidat->id,
             'image' => 'nullable|image|max:1024',
         ]);
 

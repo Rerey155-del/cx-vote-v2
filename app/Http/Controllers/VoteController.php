@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidat;
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
     public function index()
     {
-        return view('vote');
+        $candidates = Candidat::orderBy('nomor_urut', 'asc')->get();
+        return view('vote', compact('candidates'));
     }
 }

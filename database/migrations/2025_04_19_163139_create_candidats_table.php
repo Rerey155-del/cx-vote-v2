@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ketua_name');
             $table->string('wakil_name');
-            $table->string('nomor_urut');
+            $table->string('nomor_urut')->unique();
             $table->string('visi');
             $table->string('misi');
             $table->string('image')->nullable();

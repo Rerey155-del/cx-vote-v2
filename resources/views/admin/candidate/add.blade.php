@@ -34,7 +34,15 @@
                 <!-- Input Nomor Urut -->
                 <div class="my-6 mr-6">
                     <x-input-label for="nomor_urut" :value="__('Nomor Urut')" />
-                    <x-text-input id="nomor_urut" class="block mt-1 w-full" type="number" name="nomor_urut" :value="old('nomor_urut')" required autocomplete="nomor_urut" />
+                    <x-text-input
+                        id="nomor_urut"
+                        class="block mt-1 w-full"
+                        type="number"
+                        name="nomor_urut"
+                        :value="old('nomor_urut', $candidate->nomor_urut ?? '')"
+                        required
+                        autocomplete="nomor_urut"
+                    />
                     <x-input-error :messages="$errors->get('nomor_urut')" class="mt-2" />
                 </div>
 
