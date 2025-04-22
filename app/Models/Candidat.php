@@ -16,4 +16,9 @@ class Candidat extends Model
         'misi',
         'image'
     ];
+
+    public function pencoblosans()
+    {
+        return $this->hasMany(Pencoblosan::class);
+    }
 }

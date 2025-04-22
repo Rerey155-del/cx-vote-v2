@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function pencoblosan()
+    {
+        return $this->hasOne(Pencoblosan::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
