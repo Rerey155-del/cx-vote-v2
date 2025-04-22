@@ -45,6 +45,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        toast('Anda Berhasil Mengambil Absen', 'success');
+
         return redirect()->route('absensi')->with('status', 'Data absensi berhasil diinputkan');
     }
 }

@@ -8,6 +8,8 @@ use App\Models\LembagaLainnya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class AbsensiController extends Controller
 {
     public function index()
@@ -30,6 +32,8 @@ class AbsensiController extends Controller
             'name' => $request->name,
         ]);
 
+        toast('Anda Berhasil Mengambil Absen', 'success');
+
         return Redirect::route('absensi');
     }
 
@@ -50,6 +54,8 @@ class AbsensiController extends Controller
             'name' => $request->name,
         ]);
 
+        toast('Anda Berhasil Mengambil Absen', 'success');
+
         return Redirect::route('absensi');
     }
 
@@ -69,6 +75,8 @@ class AbsensiController extends Controller
             'lembaga' => $request->lembaga,
             'name' => $request->name,
         ]);
+
+        toast('Anda Berhasil Mengambil Absen', 'success');
 
         return Redirect::route('absensi');
     }
