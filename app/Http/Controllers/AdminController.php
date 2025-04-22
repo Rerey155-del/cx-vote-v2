@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class AdminController extends Controller
 {
     public function index()
@@ -104,7 +106,9 @@ class AdminController extends Controller
     public function delete_candidate(Candidat $candidat)
     {
         $candidat->delete();
-        return Redirect::back();
+
+        Alert::success('Berhasil', 'Kandidat telah dihapus');
+        return Redirect::route('dashboard-candidate');
     }
 
     public function attendance()
