@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/vote', [VoteController::class, 'index'])->name('vote');
+    Route::post('/vote', [VoteController::class, 'vote'])->name('vote-store');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

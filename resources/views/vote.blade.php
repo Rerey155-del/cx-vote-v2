@@ -39,8 +39,9 @@
                         <p class="mt-2 mb-8">Candidate {{ $candidate->nomor_urut }}</p>
 
                         <div class="flex-col justify-center">
-                            <x-modal-button onclick="openModal('modal-{{ $candidate->id }}')"
-                                class="flex justify-center items-center w-fit">
+                            <x-modal-button class="flex justify-center items-center w-fit"
+                                data-modal-target="modal-{{ $candidate->id }}"
+                                data-modal-toggle="modal-{{ $candidate->id }}">
                                 <span class="mr-2">Lihat detail</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -52,11 +53,10 @@
 
                         {{-- Modal Detail --}}
                         <div id="modal-{{ $candidate->id }}"
-                            class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
-
+                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div
                                 class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-10 relative transform transition-all">
-                                <button onclick="closeModal('modal-{{ $candidate->id }}')"
+                                <button data-modal-hide="modal-{{ $candidate->id }}"
                                     class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -92,64 +92,52 @@
                                             </ul>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="flex flex-col justify-center space-y-2">
-                        <div class="w-24 h-24 overflow-hidden shadow-lg bg-transparent rounded-lg">
-                            <img src="{{ url('storage/'.$candidate->image_ketua) }}" alt="Thumb1"
-                                class="w-full h-full shadow-md cursor-pointer object-cover"
-                                onclick="changeImage('main-image-{{ $candidate->id }}', '{{ url('storage/'.$candidate->image_ketua) }}')">
-                        </div>
-                        <div class="w-24 h-24 overflow-hidden">
-                            <img src="{{ url('storage/'.$candidate->image_wakil) }}" alt="Thumb2"
-                                class="w-full h-full rounded-lg shadow-md cursor-pointer border-2 border-gray-300 object-cover"
-                                onclick="changeImage('main-image-{{ $candidate->id }}', '{{ url('storage/'.$candidate->image_wakil) }}')">
-                        </div>
-                    </div> --}}
                                 </div>
 
                                 {{-- Tombol Pilih --}}
                                 <div class="flex justify-center mt-6">
-                                    <x-modal-button onclick="openOption('option-{{ $candidate->id }}')"
+                                    <x-modal-button data-modal-target="option-{{ $candidate->id }}"
+                                        data-modal-toggle="option-{{ $candidate->id }}"
                                         class="px-6 py-2 font-semibold">
                                         Pilih
                                     </x-modal-button>
                                 </div>
 
                                 {{-- Modal Konfirmasi --}}
-                                <div id="option-{{ $candidate->id }}"
-                                    class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-50 opacity-0 scale-90 invisible transition-all duration-300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="option-{{ $candidate->id }}"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
+                        <button data-modal-hide="option-{{ $candidate->id }}"
+                            class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </button>
 
-                                    <div
-                                        class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
-                                        <button onclick="closeOption('option-{{ $candidate->id }}')"
-                                            class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                            </svg>
-                                        </button>
+                        <div class="text-center">
+                            <h4 class="text-lg font-bold mb-6">Apakah Anda Yakin Ingin Memilih Kandidat
+                                Ini?</h4>
+                            <div class="flex justify-center space-x-4">
+                                <x-danger-button
+                                    data-modal-hide="option-{{ $candidate->id }}"
+                                    class="rounded-3xl"
+                                    >
+                                    {{ __('Batal') }}
+                                </x-danger-button>
 
-                                        <div class="text-center">
-                                            <h4 class="text-lg font-bold mb-6">Apakah Anda Yakin Ingin Memilih Kandidat
-                                                Ini?</h4>
-                                            <div class="flex justify-center space-x-4">
-                                                <x-danger-button onclick="closeOption('option-{{ $candidate->id }}')"
-                                                    class="rounded-3xl">
-                                                    {{ __('Batal') }}
-                                                </x-danger-button>
-
-                                                <form action="" method="POST">
-                                                    @csrf
-                                                    <x-primary-button class="rounded-3xl bg-blue-500">
-                                                        {{ __('Yakin') }}
-                                                    </x-primary-button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <form action="{{route('vote-store')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                                    <x-primary-button class="rounded-3xl bg-blue-500">
+                                        {{ __('Yakin') }}
+                                    </x-primary-button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -158,36 +146,4 @@
 
         </div>
     </div>
-
-    <script>
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('opacity-0', 'scale-90', 'invisible');
-            modal.classList.add('opacity-100', 'scale-100', 'visible');
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('opacity-100', 'scale-100', 'visible');
-            modal.classList.add('opacity-0', 'scale-90', 'invisible');
-        }
-
-        function openOption(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('opacity-0', 'scale-90', 'invisible');
-            modal.classList.add('opacity-100', 'scale-100', 'visible');
-        }
-
-        function closeOption(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('opacity-100', 'scale-100', 'visible');
-            modal.classList.add('opacity-0', 'scale-90', 'invisible');
-        }
-
-        function changeImage(imgId, newSrc) {
-            const img = document.getElementById(imgId);
-            img.src = newSrc;
-        }
-    </script>
-
 </x-app-layout>
