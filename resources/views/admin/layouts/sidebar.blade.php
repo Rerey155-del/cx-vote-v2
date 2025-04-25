@@ -61,9 +61,8 @@
           {{ request()->routeIs('dashboard-report') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
           <img src="./img/Reports.png" alt="">
       </svg>
-            <span class="text-xs text-center mt-1">Kandidate</span>
+            <span class="text-xs text-center mt-1">Report</span>
         </a>
 
-        {{-- Tambahkan menu lain (Attendance, Voters, Reports) dengan struktur yang sama --}}
     </div>
 </aside>
