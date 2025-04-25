@@ -114,13 +114,13 @@ class AdminController extends Controller
     public function attendance()
     {
         $title = 'Attendance';
-        return view('admin.attendance', compact('title'));
+        return view('admin.candidate.attendance', compact('title'));
     }
 
     public function voters()
     {
         $title = 'Voters';
-        return view('admin.voters', compact('title'));
+        return view('admin.candidate.voters', compact('title'));
     }
 
     public function report()
