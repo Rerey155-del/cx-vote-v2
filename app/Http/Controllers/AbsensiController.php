@@ -45,18 +45,18 @@ class AbsensiController extends Controller
                 'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
                 'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
             ]);
-            toast('Absen pagi berhasil', 'success');
+            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
             return Redirect::route('absensi');
         }
 
-        if ($anggota->tanggal !== $today) {
-            // Reset absen jika beda tanggal
-            $anggota->update([
-                'tanggal' => $today,
-                'absen_pagi' => null,
-                'absen_siang' => null,
-            ]);
-        }
+        // if ($anggota->tanggal !== $today) {
+        //     // Reset absen jika beda tanggal
+        //     $anggota->update([
+        //         'tanggal' => $today,
+        //         'absen_pagi' => null,
+        //         'absen_siang' => null,
+        //     ]);
+        // }
 
         if ($jam >= 8 && $jam < 12) {
             if ($anggota->absen_pagi !== null) {
@@ -64,7 +64,7 @@ class AbsensiController extends Controller
                 return Redirect::route('absensi');
             }
             $anggota->update(['absen_pagi' => $now->toTimeString()]);
-            toast('Absensi pagi berhasil', 'success');
+            toast('Absensi pagi berhasil oiiiii', 'success');
         } elseif ($jam >= 12 && $jam <= 17) {
             if ($anggota->absen_siang !== null) {
                 toast('Lu sudah absen siang bro!', 'warning');
@@ -110,18 +110,18 @@ class AbsensiController extends Controller
                 'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
                 'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
             ]);
-            toast('Absen pagi berhasil', 'success');
+            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
             return Redirect::route('absensi');
         }
 
-        if ($alb->tanggal !== $today) {
-            // Reset absen jika beda tanggal
-            $alb->update([
-                'tanggal' => $today,
-                'absen_pagi' => null,
-                'absen_siang' => null,
-            ]);
-        }
+        // if ($alb->tanggal !== $today) {
+        //     // Reset absen jika beda tanggal
+        //     $alb->update([
+        //         'tanggal' => $today,
+        //         'absen_pagi' => null,
+        //         'absen_siang' => null,
+        //     ]);
+        // }
 
         if ($jam >= 8 && $jam < 12) {
             if ($alb->absen_pagi !== null) {
@@ -176,18 +176,18 @@ class AbsensiController extends Controller
                 'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
                 'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
             ]);
-            toast('Absen pagi berhasil', 'success');
+            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
             return Redirect::route('absensi');
         }
 
-        if ($lembaga->tanggal !== $today) {
-            // Reset absen jika beda tanggal
-            $lembaga->update([
-                'tanggal' => $today,
-                'absen_pagi' => null,
-                'absen_siang' => null,
-            ]);
-        }
+        // if ($lembaga->tanggal !== $today) {
+        //     // Reset absen jika beda tanggal
+        //     $lembaga->update([
+        //         'tanggal' => $today,
+        //         'absen_pagi' => null,
+        //         'absen_siang' => null,
+        //     ]);
+        // }
 
         if ($jam >= 8 && $jam < 12) {
             if ($lembaga->absen_pagi !== null) {
