@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('anggota_mudas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('tanggal')->nullable();
+            $table->time('absen_pagi')->nullable();
+            $table->time('absen_siang')->nullable();
             $table->timestamps();
         });
     }

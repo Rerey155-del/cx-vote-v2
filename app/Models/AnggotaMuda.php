@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class AnggotaMuda extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'tanggal',
+        'absen_pagi',
+        'absen_siang',
     ];
 }

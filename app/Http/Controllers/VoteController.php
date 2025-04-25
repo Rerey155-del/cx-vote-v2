@@ -29,13 +29,13 @@ class VoteController extends Controller
         if ($alreadyVoted) {
             // Jika sudah voting, tampilkan pesan
             Auth::logout();
-            Alert::error('Error Title', 'Anda Sudah Melakukan Voting');
+            Alert::error('1 Mahkluk 1 suara', 'Lu udah voting coy');
             return Redirect::route('absensi');
         }
 
         // Cek apakah user memiliki role yang diperbolehkan untuk voting
         if ($user->role == true) {
-            Alert::error('Error Title', 'Admin dilarang voting');
+            Alert::error('Lu Admin Kocak!!', 'Admin dilarang voting');
             return Redirect::route('dashboard');
         }
 
