@@ -24,7 +24,7 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 px-20 gap-6 items-center" data-aos="zoom-in-up">
+        <div class="grid grid-cols-2 px-20 gap-6 items-center" >
             {{-- foreach data kandidat --}}
             @foreach ($candidates as $candidate)
                 <div class="flex justify-center">
