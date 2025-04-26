@@ -102,9 +102,6 @@
                                             <h4 class="font-semibold text-left">Misi:</h4>
                                             <div class="pl-5 text-sm text-left">
                                                 {!! $candidate->misi !!}
-                                                <ol>
-                                                    <li>haloo guyss</li>
-                                                </ol>
                                             </div>
                                         </div>
 

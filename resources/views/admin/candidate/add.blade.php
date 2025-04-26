@@ -36,32 +36,16 @@
                 <x-input-error :messages="$errors->get('visi')" class="mt-2" />
             </div>
 
-            <!-- Misi pakai Quill -->
+            <!-- Misi pakai trixeditor -->
             <div class="my-6">
-                <x-input-label for="misi" :value="__('Misi')" />
-                <!-- Hidden input buat kirim data -->
-                {{-- <input type="hidden" name="misi" id="misi" value="{{ old('misi') }}">
-                <!-- Quill editor -->
-                <div id="editor" class="bg-white rounded-md border-gray-300 p-4 min-h-[150px]"></div> --}}
-
-
-                {{-- <x-text-input id="misi" class="block mt-1 w-full" type="text" name="misi" :value="old('misi')"
-                    required autocomplete="misi" /> --}}
-
-                {{-- <div id="editor" style="height: 300px;"></div>
-                <input type="hidden" name="misi" id="misi"> --}}
-
-                {{-- <textarea id="misi" name="misi"></textarea> --}}
-
-
-                <x-input-error :messages="$errors->get('misi')" class="mt-2" />
+                <div class="form-group">
+                    <label for="misi">Misi</label>
+                    <input id="misi" type="hidden" name="misi">
+                    <trix-editor input="misi"></trix-editor>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="misi">Misi</label>
-                <input id="misi" type="hidden" name="misi">
-                <trix-editor input="misi"></trix-editor>
-            </div>
+            
 
             <div class="flex">
                 <!-- Input Nomor Urut -->
