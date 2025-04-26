@@ -4,7 +4,7 @@
   <title>Kehadiran</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<x-admin-layout title="Candidate">
+<x-admin-layout title="Kehadiran">
   <div class=" mx-auto bg-white p-6 rounded-lg shadow-md">
     <!-- Tabs -->
     <div class="flex space-x-4 border-b mb-6">
