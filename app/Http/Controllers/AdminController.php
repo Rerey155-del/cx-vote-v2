@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnggotaAktif;
+use App\Models\AnggotaLuarBiasa;
+use App\Models\AnggotaMuda;
 use App\Models\Candidat;
+use App\Models\LembagaLainnya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -120,7 +123,13 @@ class AdminController extends Controller
             ->orderBy('tanggal', 'desc')
             ->get();
 
-        return view('admin.attendance', compact('title', 'anggota_aktifs'));
+        $albs = AnggotaLuarBiasa::orderBy('tanggal', 'desc')->get();
+
+        $anggota_mudas = AnggotaMuda::orderBy('tanggal', 'desc')->get();
+
+        $lembaga_lainnyas = LembagaLainnya::orderBy('tanggal', 'desc')->get();
+
+        return view('admin.attendance', compact('title', 'anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
     }
 
     public function voters()
