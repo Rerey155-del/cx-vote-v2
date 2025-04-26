@@ -8,6 +8,9 @@ class AnggotaLuarBiasa extends Model
 {
     protected $fillable = [
         'angkatan',
-        'name'
+        'name',
+        'tanggal',
+        'absen_pagi',
+        'absen_siang',
     ];
 }

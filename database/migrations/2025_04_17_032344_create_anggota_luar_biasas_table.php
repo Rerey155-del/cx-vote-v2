@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('angkatan');
             $table->string('name');
+            $table->date('tanggal')->nullable();
+            $table->time('absen_pagi')->nullable();
+            $table->time('absen_siang')->nullable();
             $table->timestamps();
         });
     }

@@ -6,7 +6,6 @@
 
     <form method="POST" action="{{route('absensi.anggota-luar-biasa')}}">
         @csrf
-
         <!-- Kode CX -->
         <div>
             <x-input-label for="angkatan" :value="__('Angkatan')" class="mt-8"/>
