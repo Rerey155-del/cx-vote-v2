@@ -2,9 +2,9 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <h1 class="text-xl text-center font-bold mb-4">REGISTRASI</h1>
+    <h1 class="text-xl text-center font-bold mb-4">Login</h1>
 
-    <p class="text-center mb-5">Daftarkan dirimu agar dapat menggunakan hak suara</p>
+    <p class="text-center mb-5">Yuk, masuk dulu supaya bisa memberikan suaramu!!</p>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf

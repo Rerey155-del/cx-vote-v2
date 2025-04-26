@@ -5,6 +5,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <x-admin-layout title="Report">
+    <div class="flex flex-col-2 mb-4">
+        <button type="button"
+            class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <img src="../img/print.svg" alt="" class="me-2">
+            Print Report
+        </button>
+
+        <button type="button"
+            class="text-white bg-[#00E217] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:bg-[#00E217] dark:hover:bg-green-600 dark:focus:ring-green-800">
+            <img src="../img/view.svg" alt="" class="me-2">
+            View Report
+        </button>
+
+    </div>
     <div class=" mx-auto bg-white p-6 rounded-xl shadow-md">
         <!-- Tab Contents -->
         <div class="tab-content">
