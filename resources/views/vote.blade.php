@@ -1,5 +1,7 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <x-app-layout>
-    <div class="bg-orange-400 text-white text-center py-48 flex flex-col items-center">
+    <div class="bg-orange-400 text-white text-center pt-[8rem] pb-[7rem] flex flex-col items-center">
         <h1 class="text-8xl font-extrabold mb-12">E-Voting</h1>
         <h2 class="text-3xl font-lights">UKM-IT CYBERNETIX</h2>
 
@@ -22,7 +24,7 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 px-20 gap-6 items-center">
+        <div class="grid grid-cols-2 px-20 gap-6 items-center" data-aos="zoom-in-up">
             {{-- foreach data kandidat --}}
             @foreach ($candidates as $candidate)
                 <div class="flex justify-center">
@@ -124,14 +126,11 @@
                             <h4 class="text-lg font-bold mb-6">Apakah Anda Yakin Ingin Memilih Kandidat
                                 Ini?</h4>
                             <div class="flex justify-center space-x-4">
-                                <x-danger-button
-                                    data-modal-hide="option-{{ $candidate->id }}"
-                                    class="rounded-3xl"
-                                    >
+                                <x-danger-button data-modal-hide="option-{{ $candidate->id }}" class="rounded-3xl">
                                     {{ __('Batal') }}
                                 </x-danger-button>
 
-                                <form action="{{route('vote-store')}}" method="POST">
+                                <form action="{{ route('vote-store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
                                     <x-primary-button class="rounded-3xl bg-blue-500">
@@ -147,3 +146,6 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    AOS.init();
+</script>
