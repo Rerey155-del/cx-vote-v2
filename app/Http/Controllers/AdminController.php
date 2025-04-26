@@ -7,6 +7,8 @@ use App\Models\AnggotaLuarBiasa;
 use App\Models\AnggotaMuda;
 use App\Models\Candidat;
 use App\Models\LembagaLainnya;
+use App\Models\Pencoblosan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -135,12 +137,31 @@ class AdminController extends Controller
     public function voters()
     {
         $title = 'Voters';
-        return view('admin.voters', compact('title'));
+
+        $pencoblosans = Pencoblosan::all();
+
+        $belum_cobloses = User::where('role', false)
+            ->whereDoesntHave('pencoblosan')
+            ->get();
+
+
+        return view('admin.voters', compact('title', 'pencoblosans', 'belum_cobloses'));
     }
 
     public function report()
     {
         $title = 'Report';
-        return view('admin.report', compact('title'));
+
+        $anggota_aktifs = AnggotaAktif::with('user')
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        $albs = AnggotaLuarBiasa::orderBy('tanggal', 'desc')->get();
+
+        $anggota_mudas = AnggotaMuda::orderBy('tanggal', 'desc')->get();
+
+        $lembaga_lainnyas = LembagaLainnya::orderBy('tanggal', 'desc')->get();
+
+        return view('admin.report', compact('title', 'anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
     }
 }
