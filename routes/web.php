@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VoteController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return redirect()->route('absensi');
@@ -48,5 +49,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/dashboard/report', [AdminController::class, 'report'])->name('dashboard-report');
 });
+
+Route::get('report/view-pdf',[ReportController::class,'viewPdf'])->name('report.view-pdf');
 
 require __DIR__ . '/auth.php';
