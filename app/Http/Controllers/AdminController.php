@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnggotaAktif;
 use App\Models\Candidat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -114,18 +115,23 @@ class AdminController extends Controller
     public function attendance()
     {
         $title = 'Attendance';
-        return view('admin.candidate.attendance', compact('title'));
+
+        $anggota_aktifs = AnggotaAktif::with('user')
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return view('admin.attendance', compact('title', 'anggota_aktifs'));
     }
 
     public function voters()
     {
         $title = 'Voters';
-        return view('admin.candidate.voters', compact('title'));
+        return view('admin.voters', compact('title'));
     }
 
     public function report()
     {
         $title = 'Report';
-        return view('admin.candidate.report', compact('title'));
+        return view('admin.report', compact('title'));
     }
 }
