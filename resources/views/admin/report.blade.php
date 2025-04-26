@@ -13,10 +13,11 @@
         </a>
 
         <a href="{{ route('report.view-pdf') }}"
-            class="text-white bg-[#00E217] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800">
+            class="text-white bg-[#00E217] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800">
             <img src="../img/view.svg" alt="" class="me-2">
             View Report
         </a>
+
 
 
     </div>
