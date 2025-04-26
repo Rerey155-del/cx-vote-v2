@@ -23,10 +23,11 @@
         <!-- Tab Contents -->
         <div class="tab-content">
             <div class="overflow-x-auto">
+                <h1 class="font-bold mb-3">Anggota Aktif</h1>
                 <table class="min-w-full text-sm text-left border">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-4 py-2 border">Status/Lembaga</th>
+                          
                             <th class="px-4 py-2 border">Kode CX</th>
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
@@ -37,7 +38,7 @@
                     <tbody class="bg-white">
                         @foreach ($anggota_aktifs as $anggota_aktif)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">Anggota Aktif</td>
+                            
                             <td class="px-4 py-2 border">{{$anggota_aktif->user->kode_cx}}</td>
                             <td class="px-4 py-2 border">{{$anggota_aktif->user->name}}</td>
                             <td class="px-4 py-2 border">{{$anggota_aktif->tanggal}}</td>
@@ -60,11 +61,11 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                <h1 class="font-bold mb-2 mt-8">Anggota Luar Biasa</h1>
                 <table class="min-w-full text-sm text-left border mt-5">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-4 py-2 border">Status/Lembaga</th>
+                         
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
                             <th class="px-4 py-2 border">Absen Pagi</th>
@@ -74,7 +75,7 @@
                     <tbody class="bg-white mt-4">
                         @foreach ($albs as $alb)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">Anggota Luar biasa</td>
+                           
                             <td class="px-4 py-2 border">{{$alb->name}}</td>
                             <td class="px-4 py-2 border">{{$alb->tanggal}}</td>
                             <td class="px-4 py-2 border text-center">
@@ -96,11 +97,11 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                <h1 class="font-bold mb-2 mt-8">Anggota Muda</h1>
                 <table class="min-w-full text-sm text-left border mt-5">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-4 py-2 border">Status/Lembaga</th>
+                            
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
                             <th class="px-4 py-2 border">Absen Pagi</th>
@@ -110,7 +111,7 @@
                     <tbody class="bg-white mt-4">
                         @foreach ($anggota_mudas as $anggota_muda)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">Anggota Muda</td>
+                          
                             <td class="px-4 py-2 border">{{$anggota_muda->name}}</td>
                             <td class="px-4 py-2 border">{{$anggota_muda->tanggal}}</td>
                             <td class="px-4 py-2 border text-center">
@@ -133,10 +134,11 @@
                     </tbody>
                 </table>
 
+                <h1 class="font-bold mb-2 mt-8">Lembaga Lainnya</h1>
                 <table class="min-w-full text-sm text-left border mt-5">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-4 py-2 border">Lembaga</th>
+                            
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
                             <th class="px-4 py-2 border">Absen Pagi</th>
