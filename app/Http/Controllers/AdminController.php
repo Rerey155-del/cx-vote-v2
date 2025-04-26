@@ -126,6 +126,6 @@ class AdminController extends Controller
     public function report()
     {
         $title = 'Report';
-        return view('admin.report', compact('title'));
+        return view('admin.candidate.report', compact('title'));
     }
 }

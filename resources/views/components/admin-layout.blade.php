@@ -23,7 +23,7 @@
             @include('admin.layouts.sidebar')
 
             <!-- Page Content -->
-            <main class="sm:ml-64">
+            <main class="ml-[8rem] p-8">
                 @include('admin.layouts.heading',['title' => $title])
                 {{ $slot }}
             </main>

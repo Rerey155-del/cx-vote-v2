@@ -5,7 +5,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <x-admin-layout title="Candidate">
-  <div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <div class=" mx-auto bg-white p-6 rounded-lg shadow-md">
     <!-- Tabs -->
     <div class="flex space-x-4 border-b mb-6">
       <button class="tab-button text-blue-600 border-b-2 border-blue-600 pb-2" onclick="openTab(event, 'aktif')">Anggota Aktif</button>
