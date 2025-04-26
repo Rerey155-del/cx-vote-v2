@@ -79,7 +79,7 @@ class RegisteredUserController extends Controller
                 'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
             ]);
 
-            toast('Absensi berhasil dicatat.', 'success');
+            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
             return redirect()->route('absensi');
         }
 
