@@ -25,10 +25,13 @@
                 <x-input-error :messages="$errors->get('visi')" class="mt-2" />
             </div>
 
+            <!-- Misi pakai Quill -->
             <div class="my-6">
                 <x-input-label for="misi" :value="__('Misi')" />
-                <x-text-input id="misi" class="block mt-1 w-full" type="text" name="misi" :value="old('misi', $candidate->misi)"
-                    required autocomplete="misi" />
+                <!-- Hidden input buat kirim data -->
+                <input type="hidden" name="misi" id="misi" value="{{ old('misi') }}">
+                <!-- Quill editor -->
+                <div id="editor" class="bg-white rounded-md border-gray-300 p-4 min-h-[150px]"></div>
                 <x-input-error :messages="$errors->get('misi')" class="mt-2" />
             </div>
 

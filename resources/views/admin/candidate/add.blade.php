@@ -2,19 +2,19 @@
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <x-admin-layout title="Add Candidate">
     <div class="px-12">
-        <form action="{{route('dashboard-candidate-store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard-candidate-store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="my-6">
                 <x-input-label for="ketua_name" :value="__('Nama Calon Ketua Umum')" />
-                <x-text-input id="ketua_name" class="block mt-1 w-full" type="text" name="ketua_name" :value="old('ketua_name')"
-                    required autofocus autocomplete="ketua_name" />
+                <x-text-input id="ketua_name" class="block mt-1 w-full" type="text" name="ketua_name"
+                    :value="old('ketua_name')" required autofocus autocomplete="ketua_name" />
                 <x-input-error :messages="$errors->get('ketua_name')" class="mt-2" />
             </div>
 
             <div class="my-6">
                 <x-input-label for="wakil_name" :value="__('Nama Calon Wakil Ketua Umum')" />
-                <x-text-input id="wakil_name" class="block mt-1 w-full" type="text" name="wakil_name" :value="old('wakil_name')"
-                    required autocomplete="wakil_name" />
+                <x-text-input id="wakil_name" class="block mt-1 w-full" type="text" name="wakil_name"
+                    :value="old('wakil_name')" required autocomplete="wakil_name" />
                 <x-input-error :messages="$errors->get('wakil_name')" class="mt-2" />
             </div>
 
@@ -25,10 +25,13 @@
                 <x-input-error :messages="$errors->get('visi')" class="mt-2" />
             </div>
 
+             <!-- Misi pakai Quill -->
             <div class="my-6">
                 <x-input-label for="misi" :value="__('Misi')" />
-                <x-text-input id="misi" class="block mt-1 w-full" type="text" name="misi" :value="old('misi')"
-                    required autocomplete="misi" />
+                <!-- Hidden input buat kirim data -->
+                <input type="hidden" name="misi" id="misi" value="{{ old('misi') }}">
+                <!-- Quill editor -->
+                <div id="editor" class="bg-white rounded-md border-gray-300 p-4 min-h-[150px]"></div>
                 <x-input-error :messages="$errors->get('misi')" class="mt-2" />
             </div>
 
@@ -36,15 +39,8 @@
                 <!-- Input Nomor Urut -->
                 <div class="my-6 mr-6">
                     <x-input-label for="nomor_urut" :value="__('Nomor Urut')" />
-                    <x-text-input
-                        id="nomor_urut"
-                        class="block mt-1 w-full"
-                        type="number"
-                        name="nomor_urut"
-                        :value="old('nomor_urut', $candidate->nomor_urut ?? '')"
-                        required
-                        autocomplete="nomor_urut"
-                    />
+                    <x-text-input id="nomor_urut" class="block mt-1 w-full" type="number" name="nomor_urut"
+                        :value="old('nomor_urut', $candidate->nomor_urut ?? '')" required autocomplete="nomor_urut" />
                     <x-input-error :messages="$errors->get('nomor_urut')" class="mt-2" />
                 </div>
 
@@ -79,13 +75,13 @@
     </div>
 
     <script>
-        document.getElementById('foto').addEventListener('change', function (e) {
+        document.getElementById('foto').addEventListener('change', function(e) {
             const file = e.target.files[0];
             const preview = document.getElementById('preview-image');
 
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     preview.src = e.target.result;
                 }
                 reader.readAsDataURL(file);
@@ -95,6 +91,6 @@
 </x-admin-layout>
 <script>
     const quill = new Quill('#editor', {
-      theme: 'snow'
+        theme: 'snow'
     });
-  </script>
+</script>
