@@ -164,4 +164,13 @@ class AdminController extends Controller
 
         return view('admin.report', compact('title', 'anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
     }
+
+    public function real_count()
+    {
+        $title = "Real Count";
+
+        $candidates = Candidat::with('pencoblosans')->orderBy('nomor_urut', 'asc')->get();
+
+        return view('admin.real_count', compact('title', 'candidates'));
+    }
 }
