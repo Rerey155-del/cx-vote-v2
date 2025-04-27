@@ -37,70 +37,81 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 gap-6 px-20 items-center container mx-auto">
-
-            <!-- Card Kandidat 1 -->
-            <div class="flex justify-center">
-                <div
-                    class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center transition-transform duration-500 hover:scale-105">
-
-                    <div class="w-80 h-80">
-                        <img src="/path/to/your/image1.jpg" alt="Kandidat 1"
-                            class="w-full h-full rounded-2xl object-cover">
+        <div class="min-h-screen flex flex-col justify-center items-center py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 md:px-24 gap-x-16 w-full max-w-6xl mx-auto">
+                @foreach ($candidates as $candidate)
+                    <div class="shadow-xl border px-8 pt-8 pb-12 w-full rounded-3xl text-center flex flex-col justify-center items-center" data-aos="zoom-in-up">
+                        <div class="w-90 h-80">
+                            <img src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
+                                class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
+                        </div>
+                        <h4 class="text-xl font-semibold mt-8">
+                            {{ strtok($candidate->ketua_name, ' ') }} - {{ strtok($candidate->wakil_name, ' ') }}
+                        </h4>
+                        <p class="mt-2 mb-8">Candidate {{ $candidate->nomor_urut }}</p>
+                        <div class="flex-col justify-center">
+                            <x-modal-button class="flex justify-center items-center w-fit"
+                                data-modal-target="modal-{{ $candidate->id }}" data-modal-toggle="modal-{{ $candidate->id }}">
+                                <span class="mr-2">Lihat detail</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </x-modal-button>
+                        </div>
                     </div>
-
-                    <h4 class="text-xl font-semibold mt-8">
-                        Reyhan - Maulana
-                    </h4>
-                    <p class="mt-2 mb-8">Candidate 01</p>
-
-                    <div class="flex justify-center">
-                        <button
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center">
-                            <span class="mr-2">Lihat detail</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                            </svg>
-                        </button>
+        
+                    <!-- Modal -->
+                    <div id="modal-{{ $candidate->id }}"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-10 relative transform transition-all">
+                            <button data-modal-hide="modal-{{ $candidate->id }}"
+                                class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </button>
+        
+                            <div class="flex flex-col md:flex-row space-x-4">
+                                <div class="w-full md:w-1/2">
+                                    <img id="main-image-{{ $candidate->id }}" src="{{ url('storage/' . $candidate->image) }}"
+                                        alt="Kandidat" class="rounded-xl shadow-md w-full object-cover">
+                                </div>
+        
+                                <div class="w-full md:w-1/2 p-5 rounded-xl shadow-xl">
+                                    <h3 class="text-lg font-semibold text-gray-900">
+                                        {{ $candidate->nomor_urut }}. {{ strtok($candidate->ketua_name, ' ') }} -
+                                        {{ strtok($candidate->wakil_name, ' ') }}
+                                    </h3>
+        
+                                    <div class="text-left mt-2">
+                                        <h4 class="font-semibold mb-1">Visi:</h4>
+                                        <p class="text-sm">{{ $candidate->visi }}</p>
+                                    </div>
+        
+                                    <div class="mt-2">
+                                        <h4 class="font-semibold text-left">Misi:</h4>
+                                        <div class="pl-5 text-sm text-left">
+                                            {!! $candidate->misi !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="flex justify-center mt-6">
+                                <x-modal-button data-modal-target="option-{{ $candidate->id }}"
+                                    data-modal-toggle="option-{{ $candidate->id }}" class="px-6 py-2 font-semibold">
+                                    Pilih
+                                </x-modal-button>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
+                @endforeach
             </div>
-
-            <!-- Card Kandidat 2 -->
-            <div class="flex justify-center">
-                <div
-                    class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center transition-transform duration-500 hover:scale-105">
-
-                    <div class="w-80 h-80">
-                        <img src="/path/to/your/image2.jpg" alt="Kandidat 2"
-                            class="w-full h-full rounded-2xl object-cover">
-                    </div>
-
-                    <h4 class="text-xl font-semibold mt-8">
-                        Wafi - Ghjk
-                    </h4>
-                    <p class="mt-2 mb-8">Candidate 02</p>
-
-                    <div class="flex justify-center">
-                        <button
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center">
-                            <span class="mr-2">Lihat detail</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                            </svg>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-
     </div>
 </x-app-layout>
 
