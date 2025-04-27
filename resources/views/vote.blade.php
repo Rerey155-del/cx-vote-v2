@@ -1,5 +1,21 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<style>
+    .text-sm ol,
+    .text-sm ul {
+        margin-left: 1.5rem;
+        list-style-position: inside;
+    }
+
+    .text-sm ul {
+        list-style-type: disc;
+    }
+
+    .text-sm ol {
+        list-style-type: decimal;
+    }
+</style>
+
 <x-app-layout>
     <div class="bg-orange-400 text-white text-center pt-[8rem] pb-[7rem] flex flex-col items-center">
         <h1 class="text-8xl font-extrabold mb-12">E-Voting</h1>
@@ -24,14 +40,11 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 px-20 gap-6 items-center" >
+        <div class="grid grid-cols-2 px-20 gap-6 items-center">
             {{-- foreach data kandidat --}}
             @foreach ($candidates as $candidate)
-                <div class="flex justify-center"
-                {{-- data-aos="fade-up" --}}
-                >
-                    <div
-                    {{-- data-aos="fade-up" --}}
+                <div class="flex justify-center" {{-- data-aos="fade-up" --}}>
+                    <div {{-- data-aos="fade-up" --}}
                         class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center">
                         <div class="w-80 h-80">
                             <img src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
@@ -77,7 +90,7 @@
                                             class="rounded-xl shadow-md w-full object-cover">
                                     </div>
 
-                                    <div class="w-full md:w-1/2 p-5 rounded-xl shadow-xl">
+                                    <div class="w-full md:w-1/2 p-5 rounded-xl shadow-xl overflow-y-auto">
                                         <h3 class="text-lg font-semibold text-gray-900">
                                             {{ $candidate->nomor_urut }}. {{ strtok($candidate->ketua_name, ' ') }} -
                                             {{ strtok($candidate->wakil_name, ' ') }}
@@ -90,11 +103,9 @@
 
                                         <div class="mt-2">
                                             <h4 class="font-semibold text-left">Misi:</h4>
-                                            <ul class="list-decimal pl-5 text-sm text-left">
-                                                @foreach (explode(';', $candidate->misi) as $misi)
-                                                    <li>{{ $misi }}</li>
-                                                @endforeach
-                                            </ul>
+                                            <div class="text-sm text-left prose">
+                                                {!! $candidate->misi !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -113,8 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="option-{{ $candidate->id }}"
-                    {{-- data-aos="fade-up" --}}
+                <div id="option-{{ $candidate->id }}" {{-- data-aos="fade-up" --}}
                     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
                         <button data-modal-hide="option-{{ $candidate->id }}"
