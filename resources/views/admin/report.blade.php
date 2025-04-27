@@ -12,8 +12,11 @@
             Print Report
         </a>
 
-        <a href="{{ route('report.view-pdf') }}"
-            class="text-white bg-[rgb(0,226,23)] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800">
+        <a
+            href="{{ route('report.view-pdf') }}"
+            target="_blank"
+            class="text-white bg-[rgb(0,226,23)] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800"
+            >
             <img src="../img/view.svg" alt="" class="me-2">
             View Report
         </a>
@@ -24,13 +27,14 @@
     <div class=" mx-auto bg-white p-6 rounded-xl shadow-md">
         <!-- Tab Contents -->
         <div class="tab-content">
+            <a href="{{route('report.view-pdf')}}">pdfkuy</a>
             <div class="overflow-x-auto">
                 <h1 class="font-bold mb-2 text-center">Anggota Aktif</h1>
                 <table class="min-w-full text-sm text-left border">
                     <thead class="bg-gray-100">
                         <tr>
 
-                            <th class="px-4 py-2 border">Kode CX</th>
+                            <th class="px-4 py-2 border">Kode CXdd</th>
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
                             <th class="px-4 py-2 border">Absen Pagi</th>
