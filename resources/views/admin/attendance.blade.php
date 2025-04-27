@@ -61,15 +61,121 @@
         </div>
 
         <div id="luar_biasa" class="tab-content hidden">
-            <p>Belum ada data.</p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Angkatan</th>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach ($albs as $alb)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 border">{{ $alb->angkatan }}</td>
+                                <td class="px-4 py-2 border">{{ $alb->name }}</td>
+                                <td class="px-4 py-2 border">{{ $alb->tanggal }}</td>
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($alb->absen_pagi !== null)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $alb->absen_pagi)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($alb->absen_siang)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $alb->absen_siang)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="muda" class="tab-content hidden">
-            <p>Belum ada data.</p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach ($anggota_mudas as $anggota_muda)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 border">{{ $anggota_muda->name }}</td>
+                                <td class="px-4 py-2 border">{{ $anggota_muda->tanggal }}</td>
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($anggota_muda->absen_pagi)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_muda->absen_pagi)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($anggota_muda->absen_siang)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_muda->absen_siang)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="lembaga" class="tab-content hidden">
-            <p>Belum ada data.</p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">Lembaga</th>
+                            <th class="px-4 py-2 border">tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach ($lembaga_lainnyas as $lembaga_lainnya)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 border">{{ $lembaga_lainnya->name }}</td>
+                                <td class="px-4 py-2 border">{{ $lembaga_lainnya->lembaga }}</td>
+                                <td class="px-4 py-2 border">{{ $lembaga_lainnya->tanggal }}</td>
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($lembaga_lainnya->absen_pagi)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $lembaga_lainnya->absen_pagi)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+
+                                <td class="px-4 py-2 border text-center">
+                                    @if ($lembaga_lainnya->absen_siang)
+                                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $lembaga_lainnya->absen_siang)->format('H:i') }}
+                                    @else
+                                        <span class="text-red-600">Belum absen</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
