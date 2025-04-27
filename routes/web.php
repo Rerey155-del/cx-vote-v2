@@ -51,5 +51,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('report/view-pdf',[ReportController::class,'viewPdf'])->name('report.view-pdf');
+Route::get('/hasil', function () {
+    return view('./real-count');
+});
 
 require __DIR__ . '/auth.php';
