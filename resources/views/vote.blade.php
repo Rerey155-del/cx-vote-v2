@@ -18,8 +18,8 @@
 
 <x-app-layout>
     <div class="bg-orange-400 text-white text-center pt-[8rem] pb-[7rem] flex flex-col items-center">
-        <h1 class="text-8xl font-extrabold mb-12">E-Voting</h1>
-        <h2 class="text-3xl font-lights">UKM-IT CYBERNETIX</h2>
+        <h1 class="text-7xl font-extrabold mb-12" style="font-family: 'Syne', sans-serif;">E-Voting</h1>
+        <h2 class="text-3xl font-bold" style="font-family: 'Syne', sans-serif;">UKM-IT CYBERNETIX</h2>
 
         <div class="mt-16 w-fit">
             <a href="#marquee" class="rounded-3xl border border-white px-6 py-3 hover:bg-orange-500 transition delay-75">
@@ -29,7 +29,7 @@
     </div>
 
     <div id="marquee" class="bg-blue-600 flex justify-center py-4">
-        <marquee behavior="" direction="" scrollamount="20" class="text-white text-3xl font-bold">
+        <marquee style="font-family: 'Syne', sans-serif;" behavior="" direction="" scrollamount="20" class="text-white text-3xl font-bold">
             Menggunakan hak suara dengan bijak merupakan sebuah tanggung jawab yang harus dipahami oleh setiap individu
             dalam sebuah organisasi yang demokratis.
         </marquee>
