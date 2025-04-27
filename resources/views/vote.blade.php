@@ -37,10 +37,10 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="min-h-screen flex flex-col justify-center items-center py-8">
+        <div class="min-h-screen flex flex-col justify-center items-center">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 md:px-24 gap-x-16 w-full max-w-6xl mx-auto">
                 @foreach ($candidates as $candidate)
-                    <div class="shadow-xl border px-8 pt-8 pb-12 w-full rounded-3xl text-center flex flex-col justify-center items-center" data-aos="zoom-in-up">
+                    <div class="shadow-xl border px-8 pt-8 pb-12 w-full rounded-3xl text-center flex flex-col justify-center items-center mb-12" data-aos="zoom-in-up">
                         <div class="w-90 h-80">
                             <img src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
                                 class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
