@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <x-admin-layout title="Add Candidate">
     <div class="px-12">
         <form action="{{route('dashboard-candidate-store')}}" method="post" enctype="multipart/form-data">
@@ -47,13 +49,10 @@
                 </div>
 
                 <!-- Input Foto -->
-                {{-- <div class="my-6">
+                <div class="my-6">
                     <x-input-label for="foto" :value="__('Foto Pasangan Calon')" />
                     <div class="bg-white border rounded-xl shadow p-4 w-[300px]">
                         <div class="flex items-center space-x-4">
-                            <div class="w-16 h-16 flex items-center justify-center bg-gray-100 rounded overflow-hidden">
-                                <img id="preview-image" src="https://www.svgrepo.com/show/508699/picture.svg" alt="Preview" class="w-16 h-16 object-cover" />
-                            </div>
                             <div>
                                 <input type="file" name="image" id="foto" accept="image/*"
                                     class="block w-full text-sm text-gray-500
@@ -67,8 +66,7 @@
                         </div>
                         <x-input-error :messages="$errors->get('foto')" class="mt-2" />
                     </div>
-                </div> --}}
-                <input type="file" name="image" id="">
+                </div>
             </div>
 
             <div class="flex items-center justify-center mt-10 text-center">
@@ -95,3 +93,8 @@
         });
     </script>
 </x-admin-layout>
+<script>
+    const quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+  </script>
