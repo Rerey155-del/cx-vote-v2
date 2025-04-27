@@ -7,6 +7,8 @@ use App\Models\AnggotaLuarBiasa;
 use App\Models\AnggotaMuda;
 use App\Models\Candidat;
 use App\Models\LembagaLainnya;
+use App\Models\Pencoblosan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -135,7 +137,15 @@ class AdminController extends Controller
     public function voters()
     {
         $title = 'Voters';
-        return view('admin.voters', compact('title'));
+
+        $pencoblosans = Pencoblosan::all();
+
+        $belum_cobloses = User::where('role', false)
+            ->whereDoesntHave('pencoblosan')
+            ->get();
+
+
+        return view('admin.voters', compact('title', 'pencoblosans', 'belum_cobloses'));
     }
 
     public function report()
