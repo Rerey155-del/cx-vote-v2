@@ -14,11 +14,12 @@ class ReportController extends Controller
 {
     public function viewPdf()
     {
-        $users = User::all();
+        $anggota_aktifs = AnggotaAktif::all();
+        $albs = AnggotaLuarBiasa::orderBy('tanggal', 'desc')->get();
         $anggota_mudas = AnggotaMuda::all();
         $lembaga_lainnyas = LembagaLainnya::all();
         $anggota_luarBiasas = AnggotaLuarBiasa::all();
-        $pdf = Pdf::loadView('admin.report_pdf', compact('users', 'anggota_mudas', 'lembaga_lainnyas'));
+        $pdf = Pdf::loadView('admin.report_pdf', compact('anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
         return $pdf->stream('report.pdf'); // langsung buka PDF di browser
     }
 }
