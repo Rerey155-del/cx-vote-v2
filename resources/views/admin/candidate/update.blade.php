@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <x-admin-layout title="Update Candidate">
     <div class="px-12">
         <form action="{{ route('dashboard-candidate-update', $candidate->id) }}" method="post" enctype="multipart/form-data">
@@ -87,6 +89,11 @@
                 }
                 reader.readAsDataURL(file);
             }
+        });
+    </script>
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
         });
     </script>
 </x-admin-layout>
