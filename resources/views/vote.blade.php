@@ -27,8 +27,11 @@
         <div class="grid grid-cols-2 px-20 gap-6 items-center" >
             {{-- foreach data kandidat --}}
             @foreach ($candidates as $candidate)
-                <div class="flex justify-center">
+                <div class="flex justify-center"
+                {{-- data-aos="fade-up" --}}
+                >
                     <div
+                    {{-- data-aos="fade-up" --}}
                         class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center">
                         <div class="w-80 h-80">
                             <img src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
@@ -111,6 +114,7 @@
                     </div>
                 </div>
                 <div id="option-{{ $candidate->id }}"
+                    {{-- data-aos="fade-up" --}}
                     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="bg-white rounded-3xl shadow-lg max-w-md w-full p-10 relative transform transition-all">
                         <button data-modal-hide="option-{{ $candidate->id }}"
