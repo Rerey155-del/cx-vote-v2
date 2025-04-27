@@ -1,6 +1,19 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <x-app-layout>
+    @section('css')
+    <style>
+        ol {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+    }
+    </style>
+    @endsection
     <div class="bg-orange-400 text-white text-center pt-[8rem] pb-[7rem] flex flex-col items-center">
         <h1 class="text-8xl font-extrabold mb-12">E-Voting</h1>
         <h2 class="text-3xl font-lights">UKM-IT CYBERNETIX</h2>
@@ -89,6 +102,9 @@
                                             <h4 class="font-semibold text-left">Misi:</h4>
                                             <div class="pl-5 text-sm text-left">
                                                 {!! $candidate->misi !!}
+                                                <ol>
+                                                    <li>haloo guyss</li>
+                                                </ol>
                                             </div>
                                         </div>
 

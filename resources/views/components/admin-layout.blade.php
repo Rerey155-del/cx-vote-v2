@@ -22,7 +22,7 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet"> --}}
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
 
-
+    @yield('css')
 </head>
 
 <body class="font-sans antialiased">

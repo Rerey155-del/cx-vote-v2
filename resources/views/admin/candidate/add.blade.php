@@ -1,4 +1,17 @@
 <x-admin-layout title="Add Candidate">
+    @section('css')
+    <style>
+        ol {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+    }
+    </style>
+    @endsection
     <div class="px-12">
         <form action="{{ route('dashboard-candidate-store') }}" method="post" enctype="multipart/form-data">
             @csrf
