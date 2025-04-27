@@ -37,38 +37,70 @@
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 px-20 gap-6 items-center container mx-auto">
-            {{-- foreach data kandidat --}}
-          
-                <div class="flex justify-center ">
-                    <div class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center"
-                        data-aos="zoom-in-up">
+        <div class="grid grid-cols-2 gap-6 px-20 items-center container mx-auto">
 
-                        <div class="w-80 h-80">
-                            <img src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
-                                class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
-                        </div>
+            <!-- Card Kandidat 1 -->
+            <div class="flex justify-center">
+                <div
+                    class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center transition-transform duration-500 hover:scale-105">
 
-                        <h4 class="text-xl font-semibold mt-8">
-                            {{ strtok($candidate->ketua_name, ' ') }} - {{ strtok($candidate->wakil_name, ' ') }}
-                        </h4>
-                        <p class="mt-2 mb-8">Candidate {{ $candidate->nomor_urut }}</p>
-
-                        <div class="flex-col justify-center">
-                            <x-modal-button class="flex justify-center items-center w-fit"
-                                data-modal-target="modal-{{ $candidate->id }}"
-                                data-modal-toggle="modal-{{ $candidate->id }}">
-                                <span class="mr-2">Lihat detail</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </x-modal-button>
-                        </div>
+                    <div class="w-80 h-80">
+                        <img src="/path/to/your/image1.jpg" alt="Kandidat 1"
+                            class="w-full h-full rounded-2xl object-cover">
                     </div>
+
+                    <h4 class="text-xl font-semibold mt-8">
+                        Reyhan - Maulana
+                    </h4>
+                    <p class="mt-2 mb-8">Candidate 01</p>
+
+                    <div class="flex justify-center">
+                        <button
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center">
+                            <span class="mr-2">Lihat detail</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </button>
+                    </div>
+
                 </div>
+            </div>
+
+            <!-- Card Kandidat 2 -->
+            <div class="flex justify-center">
+                <div
+                    class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center transition-transform duration-500 hover:scale-105">
+
+                    <div class="w-80 h-80">
+                        <img src="/path/to/your/image2.jpg" alt="Kandidat 2"
+                            class="w-full h-full rounded-2xl object-cover">
+                    </div>
+
+                    <h4 class="text-xl font-semibold mt-8">
+                        Wafi - Ghjk
+                    </h4>
+                    <p class="mt-2 mb-8">Candidate 02</p>
+
+                    <div class="flex justify-center">
+                        <button
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center">
+                            <span class="mr-2">Lihat detail</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+
     </div>
 </x-app-layout>
 
