@@ -37,7 +37,7 @@
                                     <td class="px-4 py-2 border text-center text-red-600 text-xl">X</td>
                                 @endif
                                 <td class="px-4 py-2 border">
-                                    {{ $anggota_aktif->tanggal ? $anggota_aktif->tanggal : 'Belum absen' }}
+                                    {{ $anggota_aktif->tanggal ? $anggota_aktif->tanggal : 'Belum absen' }}</td>
                                 <td class="px-4 py-2 border text-center">
                                     @if ($anggota_aktif->absen_pagi)
                                         {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_aktif->absen_pagi)->format('H:i') }}

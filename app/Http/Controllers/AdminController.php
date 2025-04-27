@@ -151,6 +151,17 @@ class AdminController extends Controller
     public function report()
     {
         $title = 'Report';
-        return view('admin.report', compact('title'));
+
+        $anggota_aktifs = AnggotaAktif::with('user')
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        $albs = AnggotaLuarBiasa::orderBy('tanggal', 'desc')->get();
+
+        $anggota_mudas = AnggotaMuda::orderBy('tanggal', 'desc')->get();
+
+        $lembaga_lainnyas = LembagaLainnya::orderBy('tanggal', 'desc')->get();
+
+        return view('admin.report', compact('title', 'anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
     }
 }

@@ -27,35 +27,145 @@
                     <thead class="bg-gray-100">
                         <tr>
                             <th class="px-4 py-2 border">Status/Lembaga</th>
+                            <th class="px-4 py-2 border">Kode CX</th>
                             <th class="px-4 py-2 border">Nama</th>
-                            <th class="px-4 py-2 border">Waktu</th>
+                            <th class="px-4 py-2 border">Tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white">
+                        @foreach ($anggota_aktifs as $anggota_aktif)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">015-027</td>
-                            <td class="px-4 py-2 border">Keyfa Salsa Aulia</td>
+                            <td class="px-4 py-2 border">Anggota Aktif</td>
+                            <td class="px-4 py-2 border">{{$anggota_aktif->user->kode_cx}}</td>
+                            <td class="px-4 py-2 border">{{$anggota_aktif->user->name}}</td>
+                            <td class="px-4 py-2 border">{{$anggota_aktif->tanggal}}</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($anggota_aktif->absen_pagi)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_aktif->absen_pagi)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
 
-                            <td class="px-4 py-2 border">Kamis, 29 April 2024 08:00:00</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($anggota_aktif->absen_siang)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_aktif->absen_siang)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
                         </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <table class="min-w-full text-sm text-left border mt-5">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Status/Lembaga</th>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">Tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white mt-4">
+                        @foreach ($albs as $alb)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">015-027</td>
-                            <td class="px-4 py-2 border">Keyfa Salsa Aulia</td>
+                            <td class="px-4 py-2 border">Anggota Luar biasa</td>
+                            <td class="px-4 py-2 border">{{$alb->name}}</td>
+                            <td class="px-4 py-2 border">{{$alb->tanggal}}</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($alb->absen_pagi)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $alb->absen_pagi)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
 
-                            <td class="px-4 py-2 border">Kamis, 29 April 2024 08:00:00</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($alb->absen_siang)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $alb->absen_siang)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
                         </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <table class="min-w-full text-sm text-left border mt-5">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Status/Lembaga</th>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">Tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white mt-4">
+                        @foreach ($anggota_mudas as $anggota_muda)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">015-024</td>
-                            <td class="px-4 py-2 border">Jimmy Wira Arba'a</td>
+                            <td class="px-4 py-2 border">Anggota Muda</td>
+                            <td class="px-4 py-2 border">{{$anggota_muda->name}}</td>
+                            <td class="px-4 py-2 border">{{$anggota_muda->tanggal}}</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($anggota_muda->absen_pagi)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_muda->absen_pagi)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
 
-                            <td class="px-4 py-2 border">Kamis, 29 April 2024 08:00:00</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($anggota_muda->absen_siang)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $anggota_muda->absen_siang)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
                         </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <table class="min-w-full text-sm text-left border mt-5">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border">Lembaga</th>
+                            <th class="px-4 py-2 border">Nama</th>
+                            <th class="px-4 py-2 border">Tanggal</th>
+                            <th class="px-4 py-2 border">Absen Pagi</th>
+                            <th class="px-4 py-2 border">Absen Siang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white mt-4">
+                        @foreach ($lembaga_lainnyas as $lembaga_lainnya)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">015-024</td>
-                            <td class="px-4 py-2 border">Jimmy Wira Arba'a</td>
+                            <td class="px-4 py-2 border">{{$lembaga_lainnya->lembaga}}</td>
+                            <td class="px-4 py-2 border">{{$lembaga_lainnya->name}}</td>
+                            <td class="px-4 py-2 border">{{$lembaga_lainnya->tanggal}}</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($lembaga_lainnya->absen_pagi)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $lembaga_lainnya->absen_pagi)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
 
-                            <td class="px-4 py-2 border">Kamis, 29 April 2024 08:00:00</td>
+                            <td class="px-4 py-2 border text-center">
+                                @if ($lembaga_lainnya->absen_siang)
+                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $lembaga_lainnya->absen_siang)->format('H:i') }}
+                                @else
+                                    <span class="text-red-600">Belum absen</span>
+                                @endif
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
