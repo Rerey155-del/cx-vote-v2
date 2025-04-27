@@ -87,12 +87,11 @@
 
                                         <div class="mt-2">
                                             <h4 class="font-semibold text-left">Misi:</h4>
-                                            <ul class="list-decimal pl-5 text-sm text-left">
-                                                @foreach (explode(';', $candidate->misi) as $misi)
-                                                    <li>{{ $misi }}</li>
-                                                @endforeach
-                                            </ul>
+                                            <div class="pl-5 text-sm text-left">
+                                                {!! $candidate->misi !!}
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
 

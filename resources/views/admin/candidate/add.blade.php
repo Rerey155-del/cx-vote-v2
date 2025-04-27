@@ -1,13 +1,11 @@
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <x-admin-layout title="Add Candidate">
     <div class="px-12">
         <form action="{{ route('dashboard-candidate-store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="my-6">
                 <x-input-label for="ketua_name" :value="__('Nama Calon Ketua Umum')" />
-                <x-text-input id="ketua_name" class="block mt-1 w-full" type="text" name="ketua_name"
-                    :value="old('ketua_name')" required autofocus autocomplete="ketua_name" />
+                <x-text-input id="ketua_name" class="block mt-1 w-full" type="text" name="ketua_name" :value="old('ketua_name')"
+                    required autofocus autocomplete="ketua_name" />
                 <x-input-error :messages="$errors->get('ketua_name')" class="mt-2" />
             </div>
 
@@ -25,14 +23,31 @@
                 <x-input-error :messages="$errors->get('visi')" class="mt-2" />
             </div>
 
-             <!-- Misi pakai Quill -->
+            <!-- Misi pakai Quill -->
             <div class="my-6">
                 <x-input-label for="misi" :value="__('Misi')" />
                 <!-- Hidden input buat kirim data -->
-                <input type="hidden" name="misi" id="misi" value="{{ old('misi') }}">
+                {{-- <input type="hidden" name="misi" id="misi" value="{{ old('misi') }}">
                 <!-- Quill editor -->
-                <div id="editor" class="bg-white rounded-md border-gray-300 p-4 min-h-[150px]"></div>
+                <div id="editor" class="bg-white rounded-md border-gray-300 p-4 min-h-[150px]"></div> --}}
+
+
+                {{-- <x-text-input id="misi" class="block mt-1 w-full" type="text" name="misi" :value="old('misi')"
+                    required autocomplete="misi" /> --}}
+
+                {{-- <div id="editor" style="height: 300px;"></div>
+                <input type="hidden" name="misi" id="misi"> --}}
+
+                {{-- <textarea id="misi" name="misi"></textarea> --}}
+
+
                 <x-input-error :messages="$errors->get('misi')" class="mt-2" />
+            </div>
+
+            <div class="form-group">
+                <label for="misi">Misi</label>
+                <input id="misi" type="hidden" name="misi">
+                <trix-editor input="misi"></trix-editor>
             </div>
 
             <div class="flex">
@@ -49,6 +64,7 @@
                     <x-input-label for="foto" :value="__('Foto Pasangan Calon')" />
                     <div class="bg-white border rounded-xl shadow p-4 w-[300px]">
                         <div class="flex items-center space-x-4">
+                            <img id="preview-image" class="mt-4 w-32 h-32" />
                             <div>
                                 <input type="file" name="image" id="foto" accept="image/*"
                                     class="block w-full text-sm text-gray-500
@@ -57,6 +73,8 @@
                                     file:text-sm file:font-semibold
                                     file:bg-blue-50 file:text-blue-700
                                     hover:file:bg-blue-100" />
+
+
                                 <p class="text-xs text-gray-500 mt-1">Please upload image size less than 1000KB</p>
                             </div>
                         </div>
@@ -74,23 +92,21 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById('foto').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('preview-image');
+    @section('script')
+        <script>
+            document.getElementById('foto').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const preview = document.getElementById('preview-image');
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+            });
+        </script>
+    @endsection
+
 </x-admin-layout>
-<script>
-    const quill = new Quill('#editor', {
-        theme: 'snow'
-    });
-</script>

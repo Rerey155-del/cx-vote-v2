@@ -46,7 +46,7 @@ class AdminController extends Controller
             'wakil_name' => 'required',
             'nomor_urut' => 'required|unique:candidats,nomor_urut',
             'visi' => 'required',
-            'misi' => 'required',
+            'misi' => 'required|string',
             'image' => 'required'
         ]);
 

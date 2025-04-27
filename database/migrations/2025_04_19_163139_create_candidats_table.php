@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('wakil_name');
             $table->string('nomor_urut')->unique();
             $table->string('visi');
-            $table->string('misi');
+            $table->text('misi');
             $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
