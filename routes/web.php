@@ -48,8 +48,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/voters', [AdminController::class, 'voters'])->name('dashboard-voters');
 
     Route::get('/dashboard/report', [AdminController::class, 'report'])->name('dashboard-report');
-
     Route::get('dashboard/report/view-pdf', [ReportController::class, 'viewPdf'])->name('report.view-pdf');
+
+    Route::get('/real-count', [AdminController::class, 'real_count'])->name('real-count');
 });
 Route::get('/hasil', function () {
     return view('./real-count');

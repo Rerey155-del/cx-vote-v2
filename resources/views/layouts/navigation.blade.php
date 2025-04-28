@@ -8,6 +8,12 @@
                     <x-nav-link :href="route('vote')" :active="request()->routeIs('vote')">
                         {{ __('Vote') }}
                     </x-nav-link>
+
+                    @if (Auth::user()->role == true)
+                    <x-nav-link :href="route('real-count')" :active="request()->routeIs('real-count')">
+                        {{ __('Real Count') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
