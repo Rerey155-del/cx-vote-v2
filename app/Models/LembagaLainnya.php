@@ -8,6 +8,9 @@ class LembagaLainnya extends Model
 {
     protected $fillable = [
         'lembaga',
-        'name'
+        'name',
+        'tanggal',
+        'absen_pagi',
+        'absen_siang'
     ];
 }
