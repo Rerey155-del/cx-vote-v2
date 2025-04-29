@@ -37,46 +37,43 @@ class AbsensiController extends Controller
             ->where('tanggal', $today)
             ->first();
 
-        if (!$anggota) {
-            // Belum ada, buat baru dan langsung isi absen
-            $anggota = AnggotaMuda::create([
-                'name' => $request->name,
-                'tanggal' => $today,
-                'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
-            ]);
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
-        }
-
-        // if ($anggota->tanggal !== $today) {
-        //     // Reset absen jika beda tanggal
-        //     $anggota->update([
-        //         'tanggal' => $today,
-        //         'absen_pagi' => null,
-        //         'absen_siang' => null,
-        //     ]);
-        // }
-
         if ($jam >= 8 && $jam < 12) {
-            if ($anggota->absen_pagi !== null) {
-                toast('Lu sudah absen pagi bro!', 'warning');
+            // Belum ada, buat baru dan langsung isi absen
+            if (!$anggota) {
+                $anggota = AnggotaMuda::create([
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+                toast('Absen Pagi berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Pagi Bro', 'warning');
                 return Redirect::route('absensi');
             }
-            $anggota->update(['absen_pagi' => $now->toTimeString()]);
-            toast('Absensi pagi berhasil oiiiii', 'success');
-        } elseif ($jam >= 12 && $jam <= 17) {
-            if ($anggota->absen_siang !== null) {
-                toast('Lu sudah absen siang bro!', 'warning');
+        } elseif ($jam >= 12 && $jam < 17) {
+            if (!$anggota) {
+                $anggota = AnggotaMuda::create([
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } elseif ($anggota && $anggota->absen_siang == null) {
+                $anggota->update(['absen_siang' => $now->toTimeString()]);
+
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Siang Bro', 'warning');
                 return Redirect::route('absensi');
             }
-            $anggota->update(['absen_siang' => $now->toTimeString()]);
-            toast('Anjay lu sudah absen siang bro', 'success');
-            return Redirect::route('absensi');
-        } else {
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
         }
+
+        toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
         return Redirect::route('absensi');
     }
 
@@ -100,48 +97,46 @@ class AbsensiController extends Controller
             ->where('tanggal', $today)
             ->first();
 
-
-        if (!$alb) {
-            // Belum ada, buat baru dan langsung isi absen
-            $alb = AnggotaLuarBiasa::create([
-                'angkatan' => $request->angkatan,
-                'name' => $request->name,
-                'tanggal' => $today,
-                'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
-            ]);
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
-        }
-
-        // if ($alb->tanggal !== $today) {
-        //     // Reset absen jika beda tanggal
-        //     $alb->update([
-        //         'tanggal' => $today,
-        //         'absen_pagi' => null,
-        //         'absen_siang' => null,
-        //     ]);
-        // }
-
         if ($jam >= 8 && $jam < 12) {
-            if ($alb->absen_pagi !== null) {
-                toast('Lu sudah absen pagi bro!', 'warning');
+            // Belum ada, buat baru dan langsung isi absen
+            if (!$alb) {
+                $alb = AnggotaLuarBiasa::create([
+                    'angkatan' => $request->angkatan,
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+                toast('Absen Pagi berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Pagi Bro', 'warning');
                 return Redirect::route('absensi');
             }
-            $alb->update(['absen_pagi' => $now->toTimeString()]);
-            toast('Absensi pagi berhasil', 'success');
-        } elseif ($jam >= 12 && $jam <= 17) {
-            if ($alb->absen_siang !== null) {
-                toast('Lu sudah absen siang bro!', 'warning');
+        } elseif ($jam >= 12 && $jam < 17) {
+            if (!$alb) {
+                $alb = AnggotaLuarBiasa::create([
+                    'angkatan' => $request->angkatan,
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } elseif ($alb && $alb->absen_siang == null) {
+                $alb->update(['absen_siang' => $now->toTimeString()]);
+
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Siang Bro', 'warning');
                 return Redirect::route('absensi');
             }
-            $alb->update(['absen_siang' => $now->toTimeString()]);
-            toast('Anjay lu sudah absen siang bro', 'success');
-            return Redirect::route('absensi');
-        } else {
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
         }
+
+        toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
 
         return Redirect::route('absensi');
     }
@@ -166,19 +161,61 @@ class AbsensiController extends Controller
             ->where('tanggal', $today)
             ->first();
 
-
-        if (!$lembaga) {
+        if ($jam >= 8 && $jam < 12) {
             // Belum ada, buat baru dan langsung isi absen
-            $lembaga = LembagaLainnya::create([
-                'lembaga' => $request->lembaga,
-                'name' => $request->name,
-                'tanggal' => $today,
-                'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
-            ]);
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
+            if (!$lembaga) {
+                $lembaga = LembagaLainnya::create([
+                    'lembaga' => $request->lembaga,
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+
+                toast('Absen Pagi berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Pagi Bro', 'warning');
+                return Redirect::route('absensi');
+            }
+        } elseif ($jam >= 12 && $jam < 17) {
+            if (!$lembaga) {
+                $lembaga = LembagaLainnya::create([
+                    'lembaga' => $request->lembaga,
+                    'name' => $request->name,
+                    'tanggal' => $today,
+                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                ]);
+
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } elseif ($lembaga && $lembaga->absen_siang == null) {
+                $lembaga->update(['absen_siang' => $now->toTimeString()]);
+
+                toast('Absen Siang berhasil', 'success');
+                return Redirect::route('absensi');
+            } else {
+                toast('Lu Sudah Absen Siang Bro', 'warning');
+                return Redirect::route('absensi');
+            }
         }
+
+        toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
+
+
+        // if (!$lembaga) {
+        //     // Belum ada, buat baru dan langsung isi absen
+        //     $lembaga = LembagaLainnya::create([
+        //         'lembaga' => $request->lembaga,
+        //         'name' => $request->name,
+        //         'tanggal' => $today,
+        //         'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
+        //         'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+        //     ]);
+        //     toast('Absensi berhasil', 'success');
+        //     return Redirect::route('absensi');
+        // }
 
         // if ($lembaga->tanggal !== $today) {
         //     // Reset absen jika beda tanggal
@@ -189,25 +226,25 @@ class AbsensiController extends Controller
         //     ]);
         // }
 
-        if ($jam >= 8 && $jam < 12) {
-            if ($lembaga->absen_pagi !== null) {
-                toast('Lu sudah absen pagi bro!', 'warning');
-                return Redirect::route('absensi');
-            }
-            $lembaga->update(['absen_pagi' => $now->toTimeString()]);
-            toast('Absensi pagi berhasil', 'success');
-        } elseif ($jam >= 12 && $jam <= 17) {
-            if ($lembaga->absen_siang !== null) {
-                toast('Lu sudah absen siang bro!', 'warning');
-                return Redirect::route('absensi');
-            }
-            $lembaga->update(['absen_siang' => $now->toTimeString()]);
-            toast('Anjay lu sudah absen siang bro', 'success');
-            return Redirect::route('absensi');
-        } else {
-            toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            return Redirect::route('absensi');
-        }
+        // if ($jam >= 8 && $jam < 12) {
+        //     if ($lembaga->absen_pagi !== null) {
+        //         toast('Lu sudah absen pagi bro!', 'warning');
+        //         return Redirect::route('absensi');
+        //     }
+        //     $lembaga->update(['absen_pagi' => $now->toTimeString()]);
+        //     toast('Absensi pagi berhasil', 'success');
+        // } elseif ($jam >= 12 && $jam <= 17) {
+        //     if ($lembaga->absen_siang !== null) {
+        //         toast('Lu sudah absen siang bro!', 'warning');
+        //         return Redirect::route('absensi');
+        //     }
+        //     $lembaga->update(['absen_siang' => $now->toTimeString()]);
+        //     toast('Anjay lu sudah absen siang bro', 'success');
+        //     return Redirect::route('absensi');
+        // } else {
+        //     toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
+        //     return Redirect::route('absensi');
+        // }
 
         return Redirect::route('absensi');
     }

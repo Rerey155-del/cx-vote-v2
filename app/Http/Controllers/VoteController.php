@@ -30,7 +30,7 @@ class VoteController extends Controller
             // Jika sudah voting, tampilkan pesan
             Auth::logout();
             Alert::error('1 Mahkluk 1 suara', 'Lu udah voting coy');
-            return Redirect::route('absensi');
+            return Redirect::route('login');
         }
 
         // Cek apakah user memiliki role yang diperbolehkan untuk voting
@@ -54,6 +54,6 @@ class VoteController extends Controller
 
         // Redirect dengan pesan sukses
         Alert::success('Berhasil mencoblos', 'Data pencoblosan telah tersimpan');
-        return Redirect::route('absensi')->with('logout', true);
+        return Redirect::route('login')->with('logout', true);
     }
 }

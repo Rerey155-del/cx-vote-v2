@@ -21,7 +21,42 @@ class AdminController extends Controller
     {
         $title = 'Dashboard';
 
-        return view('admin.dashboard', compact('title'));
+        $pencoblosans = Pencoblosan::all();
+
+        $hak_suaras = User::where('role', false)->get();
+
+        $anggota_mudas = AnggotaMuda::all()->count();
+        $anggota_luar_biasas = AnggotaLuarBiasa::all()->count();
+        $lembaga_lainnyas = LembagaLainnya::all()->count();
+
+        $belum_cobloses = User::where('role', false)
+            ->whereDoesntHave('pencoblosan')
+            ->get();
+
+        $models = [
+            AnggotaAktif::class,
+            AnggotaLuarBiasa::class,
+            AnggotaMuda::class,
+            LembagaLainnya::class,
+        ];
+
+        $total_attendances = collect($models)
+            ->map(fn($model) => $model::count())
+            ->sum();
+
+        return view(
+            'admin.dashboard',
+            compact(
+                'title',
+                'belum_cobloses',
+                'pencoblosans',
+                'anggota_mudas',
+                'anggota_luar_biasas',
+                'lembaga_lainnyas',
+                'total_attendances',
+                'hak_suaras'
+            )
+        );
     }
 
     public function candidate()

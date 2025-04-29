@@ -3,7 +3,7 @@
 <style>
     .text-sm ol,
     .text-sm ul {
-        margin-left: 1.5rem;
+        margin-left: 0.5rem;
         list-style-position: inside;
     }
 
@@ -73,7 +73,7 @@
                         <div id="modal-{{ $candidate->id }}"
                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div
-                                class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-10 relative transform transition-all">
+                                class="bg-white rounded-3xl shadow-lg max-w-5xl w-full p-4 relative transform transition-all">
                                 <button data-modal-hide="modal-{{ $candidate->id }}"
                                     class="absolute top-3 right-3 text-gray-700 hover:text-red-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
@@ -83,14 +83,14 @@
                                     </svg>
                                 </button>
 
-                                <div class="flex flex-col md:flex-row space-x-4">
-                                    <div class="w-full md:w-1/2">
+                                <div class="flex flex-col items-center md:flex-row space-x-2">
+                                    <div class="max-w-xs w-full md:w-1/2">
                                         <img id="main-image-{{ $candidate->id }}"
                                             src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
                                             class="rounded-xl shadow-md w-full object-cover">
                                     </div>
 
-                                    <div class="w-full md:w-1/2 p-5 rounded-xl shadow-xl overflow-y-auto">
+                                    <div class="w-full md:w-2/3 p-5 rounded-xl shadow-xl overflow-y-auto">
                                         <h3 class="text-lg font-semibold text-gray-900">
                                             {{ $candidate->nomor_urut }}. {{ strtok($candidate->ketua_name, ' ') }} -
                                             {{ strtok($candidate->wakil_name, ' ') }}

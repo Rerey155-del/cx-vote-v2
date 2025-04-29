@@ -20,6 +20,7 @@
                 </div>
                 <div class="ml-8">
                     <img src="{{ asset('img/user.png') }}" alt="" >
+                    <p>{{Auth::user()->name}}</p>
                 </div>
             </div>
         </div>
