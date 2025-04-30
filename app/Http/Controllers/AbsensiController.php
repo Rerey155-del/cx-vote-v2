@@ -202,50 +202,6 @@ class AbsensiController extends Controller
         }
 
         toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-
-
-        // if (!$lembaga) {
-        //     // Belum ada, buat baru dan langsung isi absen
-        //     $lembaga = LembagaLainnya::create([
-        //         'lembaga' => $request->lembaga,
-        //         'name' => $request->name,
-        //         'tanggal' => $today,
-        //         'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-        //         'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
-        //     ]);
-        //     toast('Absensi berhasil', 'success');
-        //     return Redirect::route('absensi');
-        // }
-
-        // if ($lembaga->tanggal !== $today) {
-        //     // Reset absen jika beda tanggal
-        //     $lembaga->update([
-        //         'tanggal' => $today,
-        //         'absen_pagi' => null,
-        //         'absen_siang' => null,
-        //     ]);
-        // }
-
-        // if ($jam >= 8 && $jam < 12) {
-        //     if ($lembaga->absen_pagi !== null) {
-        //         toast('Lu sudah absen pagi bro!', 'warning');
-        //         return Redirect::route('absensi');
-        //     }
-        //     $lembaga->update(['absen_pagi' => $now->toTimeString()]);
-        //     toast('Absensi pagi berhasil', 'success');
-        // } elseif ($jam >= 12 && $jam <= 17) {
-        //     if ($lembaga->absen_siang !== null) {
-        //         toast('Lu sudah absen siang bro!', 'warning');
-        //         return Redirect::route('absensi');
-        //     }
-        //     $lembaga->update(['absen_siang' => $now->toTimeString()]);
-        //     toast('Anjay lu sudah absen siang bro', 'success');
-        //     return Redirect::route('absensi');
-        // } else {
-        //     toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-        //     return Redirect::route('absensi');
-        // }
-
         return Redirect::route('absensi');
     }
 }
