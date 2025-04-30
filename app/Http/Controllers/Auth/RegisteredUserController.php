@@ -58,12 +58,7 @@ class RegisteredUserController extends Controller
                 'kode_cx' => $kodeCx,
                 'name' => $request->name,
                 'password' => $randomPassword,
-                // 'tanggal' => $today,
-                // 'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                // 'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
             ]);
-            // toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-            // return redirect()->route('absensi');
         }
 
         $absen = AnggotaAktif::where('user_id', $user->id)
@@ -108,44 +103,9 @@ class RegisteredUserController extends Controller
             }
         }
 
-        toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-
-        // if (!$absen) {
-        //     // Belum ada record absensi hari ini
-        //     $absen = AnggotaAktif::create([
-        //         'user_id' => $user->id,
-        //         'tanggal' => $today,
-        //         'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-        //         'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
-        //     ]);
-
-        //     toast('Absensi berhasil dicatat.', 'success');
-        //     return redirect()->route('absensi');
-        // }
-
-        // if ($jam >= 8 && $jam < 12) {
-        //     if ($absen->absen_pagi !== null) {
-        //         toast('Lu sudah absen pagi bro!', 'warning');
-        //         return redirect()->route('absensi');
-        //     }
-        //     $absen->update(['absen_pagi' => $now->toTimeString()]);
-        //     toast('Absensi pagi berhasil oiiiii', 'success');
-        // } elseif ($jam >= 12 && $jam <= 17) {
-        //     if ($absen->absen_siang !== null) {
-        //         toast('Lu sudah absen siang bro!', 'warning');
-        //         return redirect()->route('absensi');
-        //     }
-        //     $absen->update(['absen_siang' => $now->toTimeString()]);
-        //     toast('Anjay lu sudah absen siang bro', 'success');
-        //     return redirect()->route('absensi');
-        // } else {
-        //     toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-        //     return redirect()->route('absensi');
-        // }
-
         event(new Registered($user));
 
-        // toast('Anda sudah Mengambil sebelumnya', 'warning');
+        toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
 
         return redirect()->route('absensi');
     }
