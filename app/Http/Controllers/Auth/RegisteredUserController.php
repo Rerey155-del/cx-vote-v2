@@ -35,10 +35,10 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'kode_cx' => ['required', 'string', 'max:7'],
-            'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $randomPassword = Str::lower(Str::random(5));
+        // $randomPassword = Str::lower(Str::random(5));
 
         $now = Carbon::now();
         $jam = $now->hour;
@@ -48,18 +48,14 @@ class RegisteredUserController extends Controller
 
         $user = User::where('kode_cx', $kodeCx)->first();
 
-        if ($user && $user->name !== $name) {
+        if ($user && strtoupper($user->name) !== strtoupper($name)) {
             toast('Kode CX tersebut sudah digunakan oleh orang lain.', 'error');
             return redirect()->route('register');
         }
 
         if (!$user) {
-            // Belum ada, buat baru dan langsung isi absen
-            $user = User::create([
-                'kode_cx' => $kodeCx,
-                'name' => $request->name,
-                'password' => $randomPassword,
-            ]);
+            toast('Anda tidak terdata sebagai anggota CX', 'error');
+            return redirect()->route('register');
         }
 
         $absen = AnggotaAktif::where('user_id', $user->id)

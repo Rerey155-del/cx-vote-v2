@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'kode_cx',
-        'name',
+        // 'name',
         'password',
     ];
 
