@@ -28,6 +28,7 @@ class AbsensiController extends Controller
     public function store_anggota_muda(Request $request)
     {
         $request->validate([
+            'no_bp' => 'required',
             'name' => 'required'
         ]);
 
@@ -35,7 +36,7 @@ class AbsensiController extends Controller
         $jam = $now->hour;
         $today = $now->toDateString();
 
-        $anggota = AnggotaMuda::where('name', $request->name)
+        $anggota = AnggotaMuda::where('no_bp', $request->no_bp)
             ->where('tanggal', $today)
             ->first();
 
@@ -43,6 +44,7 @@ class AbsensiController extends Controller
             // Belum ada, buat baru dan langsung isi absen
             if (!$anggota) {
                 $anggota = AnggotaMuda::create([
+                    'no_bp' => $request->no_bp,
                     'name' => $request->name,
                     'tanggal' => $today,
                     'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,

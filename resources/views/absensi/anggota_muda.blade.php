@@ -7,10 +7,16 @@
     <form method="POST" action="{{route('absensi.store-anggota-muda')}}">
         @csrf
 
+        <div>
+            <x-input-label for="no_bp" :value="__('No Bp')" class="mt-8"/>
+            <x-text-input id="no_bp" placeholder="21101152630296" class="block mt-1 w-full" type="text" name="no_bp" :value="old('no_bp')" required autofocus autocomplete="no_bp" />
+            <x-input-error :messages="$errors->get('no_bp')" class="mt-2" />
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nama')" class="mt-8"/>
-            <x-text-input id="name" placeholder="Akbar Ramadhan" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" placeholder="Akbar Ramadhan" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 

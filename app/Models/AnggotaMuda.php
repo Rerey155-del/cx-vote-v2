@@ -8,6 +8,7 @@ class AnggotaMuda extends Model
 {
     protected $fillable = [
         'name',
+        'no_bp',
         'tanggal',
         'absen_pagi',
         'absen_siang',

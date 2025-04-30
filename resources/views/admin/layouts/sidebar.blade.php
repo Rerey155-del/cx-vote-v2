@@ -14,7 +14,7 @@
     <div class="h-full py-4 overflow-y-auto flex flex-col items-center space-y-6">
         {{-- Dashboard --}}
         <a href="{{ route('dashboard') }}"
-            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20 
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
           {{ request()->routeIs('dashboard') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 mb-2">
@@ -27,7 +27,7 @@
         </a>
         {{-- candidate --}}
         <a href="{{ route('dashboard-candidate') }}"
-            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20 
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
           {{ request()->routeIs('dashboard-candidate') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 mb-1">
@@ -36,9 +36,21 @@
             </svg>
             <span class="text-xs text-center mt-1">Kandidate</span>
         </a>
+
+        <a href="{{ route('dashboard-keanggotaan') }}"
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
+{{ request()->routeIs('dashboard-keanggotaan') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 17.25v-3.375M12 17.25V12M15 17.25v-4.125M3.75 5.25a2.25 2.25 0 012.25-2.25h12a2.25 2.25 0 012.25 2.25v13.5a2.25 2.25 0 01-2.25 2.25h-12A2.25 2.25 0 013.75 18.75V5.25z" />
+            </svg>
+            <span class="text-xs text-center mt-1">Anggota</span>
+        </a>
+
         {{-- attendance --}}
         <a href="{{ route('dashboard-attendance') }}"
-            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20 
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
 {{ request()->routeIs('dashboard-attendance') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -50,7 +62,7 @@
 
         {{-- voters --}}
         <a href="{{ route('dashboard-voters') }}"
-            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20 
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
 {{ request()->routeIs('dashboard-voters') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -62,7 +74,7 @@
 
         {{-- report --}}
         <a href="{{ route('dashboard-report') }}"
-            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20 
+            class="flex flex-col items-center justify-center px-2 py-2 rounded-lg w-20 h-20
 {{ request()->routeIs('dashboard-report') ? 'bg-blue-500 text-white' : 'text-gray-800 hover:bg-gray-200' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -71,6 +83,8 @@
             </svg>
             <span class="text-xs text-center mt-1">Report</span>
         </a>
+
+
 
 
     </div>

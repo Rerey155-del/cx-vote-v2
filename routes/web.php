@@ -43,6 +43,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/{candidat}/edit', [AdminController::class, 'edit_candidate'])->name('dashboard-candidate-edit');
     Route::patch('/dashboard/{candidat}', [AdminController::class, 'update_candidate'])->name('dashboard-candidate-update');
 
+    Route::get('/dashboard/keanggotaan', [AdminController::class, 'keanggotaan'])->name('dashboard-keanggotaan');
+    Route::post('/dashboard/keanggotaan/aktif', [AdminController::class, 'store_anggota_aktif'])->name('store-anggota-aktif');
+    Route::post('/dashboard/keanggotaan/muda', [AdminController::class, 'store_anggota_muda'])->name('store-anggota-muda');
+
     Route::get('/dashboard/attendance', [AdminController::class, 'attendance'])->name('dashboard-attendance');
 
     Route::get('/dashboard/voters', [AdminController::class, 'voters'])->name('dashboard-voters');

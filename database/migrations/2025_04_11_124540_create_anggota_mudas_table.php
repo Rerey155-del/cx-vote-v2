@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('anggota_mudas', function (Blueprint $table) {
             $table->id();
+            $table->string('no_bp');
             $table->string('name');
             $table->date('tanggal')->nullable();
             $table->time('absen_pagi')->nullable();

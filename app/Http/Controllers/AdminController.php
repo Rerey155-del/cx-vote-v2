@@ -9,10 +9,12 @@ use App\Models\Candidat;
 use App\Models\LembagaLainnya;
 use App\Models\Pencoblosan;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
@@ -150,6 +152,77 @@ class AdminController extends Controller
 
         Alert::success('Berhasil', 'Kandidat telah dihapus');
         return Redirect::route('dashboard-candidate');
+    }
+
+    public function keanggotaan()
+    {
+        $title = "Keanggotaan";
+
+        $hak_suaras = User::where('role', false)
+            ->orderBy('kode_cx', 'asc')
+            ->get();
+
+        $anggota_mudas = AnggotaMuda::orderBy('name', 'asc')->get();
+
+
+        return view('admin.keanggotaan', compact('title', 'hak_suaras', 'anggota_mudas'));
+    }
+
+    public function store_anggota_aktif(Request $request)
+    {
+        $request->validate([
+            'kode_cx' => ['required', 'string', 'max:7'],
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $kodeCx = $request->kode_cx;
+        $name = $request->name;
+
+        $randomPassword = Str::lower(Str::random(5));
+
+        $user = User::where('kode_cx', $kodeCx)->first();
+
+        if ($user && strtoupper($user->name) !== strtoupper($name)) {
+            toast('Kode CX tersebut sudah digunakan oleh orang lain.', 'error');
+            return Redirect::back();
+        }
+
+        $user = User::create([
+            'kode_cx' => $kodeCx,
+            'name' => strtoupper($request->name),
+            'password' => $randomPassword,
+        ]);
+
+        event(new Registered($user));
+
+        toast('Anggota aktif berhasil ditambahkan.', 'success');
+        return Redirect::back();
+    }
+
+    public function store_anggota_muda(Request $request)
+    {
+        $request->validate([
+            'no_bp' => ['required', 'string', 'max:15'],
+            'name' => ['required', 'string', 'max:50'],
+        ]);
+
+        $noBp = $request->no_bp;
+        $name = $request->name;
+
+        $muda = AnggotaMuda::where('no_bp', $noBp)->first();
+
+        if ($muda && strtoupper($muda->name) !== strtoupper($name)) {
+            toast('Nobp tersebut sudah digunakan oleh orang lain.', 'error');
+            return Redirect::back();
+        }
+
+        $muda = AnggotaMuda::create([
+            'no_bp' => $noBp,
+            'name' => strtoupper($request->name)
+        ]);
+
+        toast('Anggota muda berhasil ditambahkan.', 'success');
+        return Redirect::back();
     }
 
     public function attendance()
