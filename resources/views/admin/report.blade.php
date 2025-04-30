@@ -6,17 +6,15 @@
 </head>
 <x-admin-layout title="Report">
     <div class="flex flex-col-2 mb-4">
-        <a href="#"id="openAndPrintPDF" target="_blank" onclick="setTimeout(() => window.print(), 1000);"
+        <a href="javascript:void(0);" onclick="openAndPrintPDF();"
             class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <img src="../img/print.svg" alt="" class="me-2">
             Print Report
         </a>
 
-        <a
-            href="{{ route('report.view-pdf') }}"
-            target="_blank"
-            class="text-white bg-[rgb(0,226,23)] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800"
-            >
+
+        <a href="{{ route('report.view-pdf') }}" target="_blank"
+            class="text-white bg-[rgb(0,226,23)] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800">
             <img src="../img/view.svg" alt="" class="me-2">
             View Report
         </a>
@@ -27,7 +25,6 @@
     <div class=" mx-auto bg-white p-6 rounded-xl shadow-md">
         <!-- Tab Contents -->
         <div class="tab-content">
-            <a href="{{route('report.view-pdf')}}">pdfkuy</a>
             <div class="overflow-x-auto">
                 <h1 class="font-bold mb-2 text-center">Anggota Aktif</h1>
                 <table class="min-w-full text-sm text-left border">
@@ -181,11 +178,12 @@
     </div>
     <script>
         function openAndPrintPDF() {
-            const pdfWindow = window.open({{ route('report.view-pdf') }}, '_blank');
+            const pdfWindow = window.open('{{ route('report.view-pdf') }}', '_blank');
             pdfWindow.onload = function() {
                 pdfWindow.focus();
                 pdfWindow.print();
             };
         }
     </script>
+
 </x-admin-layout>
