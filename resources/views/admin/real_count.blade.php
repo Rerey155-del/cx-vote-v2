@@ -10,7 +10,7 @@
             @foreach ($candidates as $candidate)
                 <div class="bg-white rounded-3xl shadow-lg p-8 w-96 flex flex-col items-center">
                     <div class="w-full h-80 rounded-xl overflow-hidden flex items-center justify-center">
-                        <img src="{{ url('storage/' . $candidate->image) }}" alt="Calon {{ $candidate->nomor_urut }}"
+                        <img src="{{ asset('public/storage/' . $candidate->image) }}" alt="Calon {{ $candidate->nomor_urut }}"
                             class="object-cover object-center" />
                     </div>
                     <h2 class="text-2xl font-semibold mt-4">{{ strtok($candidate->ketua_name, ' ') }} -
@@ -36,9 +36,9 @@
         </div>
     </div>
 
-    <audio id="drum-sound" src="{{ asset('sound/Drum roll sound effect .mp3') }}"></audio>
-    <audio id="champion-sound" src="{{ asset('sound/Queen - We Are The Champions.mp3') }}"></audio>
-    <audio id="confetti-sound" src="{{ asset('sound/Confetti.mp3') }}"></audio>
+    <audio id="drum-sound" src="{{ asset('public/sound/Drum roll sound effect .mp3') }}"></audio>
+    <audio id="champion-sound" src="{{ asset('public/sound/Queen - We Are The Champions.mp3') }}"></audio>
+    <audio id="confetti-sound" src="{{ asset('public/sound/Confetti.mp3') }}"></audio>
 
     @section('script')
         <script>
@@ -189,7 +189,7 @@
                             Swal.fire({
                                 title: 'Pemenang!',
                                 html: `<b>Candidat ${winner.nomor_urut}</b><br><br><strong>${winner.ketua_name} & ${winner.wakil_name}</strong><br> dengan total ${maxVotes} suara.`,
-                                imageUrl: '/storage/' + winner
+                                imageUrl: 'public/storage/' + winner
                                     .image, // URL gambar pemenang
                                 imageHeight: 200,
                                 confirmButtonText: 'Oke'

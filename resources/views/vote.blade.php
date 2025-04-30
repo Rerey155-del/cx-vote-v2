@@ -47,7 +47,7 @@
                     <div {{-- data-aos="fade-up" --}}
                         class="shadow-xl border px-8 pt-8 pb-12 w-fit rounded-3xl text-center flex flex-col justify-center items-center">
                         <div class="w-80 h-80">
-                            <img src="{{ asset('storage/' . $candidate->image) }}" alt="Kandidat"
+                            <img src="{{ asset('public/storage/' . $candidate->image) }}" alt="Kandidat"
                                 class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
                         </div>
 
@@ -86,7 +86,7 @@
                                 <div class="flex flex-col items-center md:flex-row space-x-2">
                                     <div class="max-w-xs w-full md:w-1/2">
                                         <img id="main-image-{{ $candidate->id }}"
-                                            src="{{ url('storage/' . $candidate->image) }}" alt="Kandidat"
+                                            src="{{ asset('public/storage/' . $candidate->image) }}" alt="Kandidat"
                                             class="rounded-xl shadow-md w-full object-cover">
                                     </div>
 

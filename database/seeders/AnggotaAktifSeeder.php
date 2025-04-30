@@ -15,13 +15,15 @@ class AnggotaAktifSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            ['kode_cx' => '013-004', 'name' => 'Andhika Mulya'],
-            ['kode_cx' => '014-003', 'name' => 'Alif Suryadi'],
-            ['kode_cx' => '014-004', 'name' => 'Aldi Musneldi'],
-            ['kode_cx' => '014-022', 'name' => 'Muhammad Iqbal'],
-            ['kode_cx' => '014-024', 'name' => 'Rizki Mufid'],
-            ['kode_cx' => '014-025', 'name' => 'Reza Fahlefi'],
-            ['kode_cx' => '014-027', 'name' => 'Afika Syahira'],
+            ['kode_cx' => '013-004', 'name' => 'ANDHIKA MULYA'],
+
+            ['kode_cx' => '014-003', 'name' => 'ALIF SURYADI'],
+            ['kode_cx' => '014-004', 'name' => 'ALDI MUSNELDI'],
+            ['kode_cx' => '014-022', 'name' => 'MUHAMMAD IQBAL'],
+            ['kode_cx' => '014-024', 'name' => 'RIZKI MUFID'],
+            ['kode_cx' => '014-025', 'name' => 'REZA FAHLEFI'],
+            ['kode_cx' => '014-027', 'name' => 'AFIKA SYAHIRA'],
+
             ['kode_cx' => '015-001', 'name' => 'ADIZA JAYA ABRAR'],
             ['kode_cx' => '015-002', 'name' => 'AFEVA RAHMI RAFITRI'],
             ['kode_cx' => '015-003', 'name' => 'AGIL SAPUTRA'],
