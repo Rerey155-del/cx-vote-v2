@@ -31,7 +31,7 @@
                     <thead class="bg-gray-100">
                         <tr>
 
-                            <th class="px-4 py-2 border">Kode CXdd</th>
+                            <th class="px-4 py-2 border">Kode CX</th>
                             <th class="px-4 py-2 border">Nama</th>
                             <th class="px-4 py-2 border">Tanggal</th>
                             <th class="px-4 py-2 border">Absen Pagi</th>
