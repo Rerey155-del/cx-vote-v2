@@ -7,7 +7,7 @@
             <div
                 class="shadow-xl rounded-2xl flex flex-col items-center justify-center py-8 overflow-hidden text-center">
                 <div class="w-60 h-60">
-                    <img src="{{ url('storage/' . $candidate->image) }}" alt=""
+                    <img src="{{ asset('public/storage/' . $candidate->image) }}" alt=""
                         class="w-full h-full rounded-2xl object-cover flex items-center justify-center">
                 </div>
                 <div class="mt-6">
