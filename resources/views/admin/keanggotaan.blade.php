@@ -21,7 +21,7 @@
                         <tr>
                             <th class="px-4 py-2 border">Kode CX</th>
                             <th class="px-4 py-2 border">Nama</th>
-                            <th class="px-4 py-2 border">Password</th>
+                            {{-- <th class="px-4 py-2 border">Password</th> --}}
                         </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -29,7 +29,7 @@
                             <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-2 border">{{ $hak_suara->kode_cx }}</td>
                                 <td class="px-4 py-2 border">{{ $hak_suara->name }}</td>
-                                <td class="px-4 py-2 border">{{ $hak_suara->password }}</td>
+                                {{-- <td class="px-4 py-2 border">{{ $hak_suara->password }}</td> --}}
                             </tr>
                         @endforeach
                     </tbody>
