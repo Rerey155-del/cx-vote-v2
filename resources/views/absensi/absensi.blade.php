@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="$title">
     <h1 class="text-center font-bold text-xl">Pilih Keanggotaanmu</h1>
     <div class="mt-10">
         <a

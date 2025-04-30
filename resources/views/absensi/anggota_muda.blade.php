@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="$title">
 
     <h1 class="text-center font-bold text-2xl mb-5">FORMULIR ABSEN</h1>
 
@@ -10,7 +10,7 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nama')" class="mt-8"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" placeholder="Akbar Ramadhan" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 

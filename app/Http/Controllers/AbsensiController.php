@@ -15,12 +15,14 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        return view('absensi.absensi');
+        $title  = "Status";
+        return view('absensi.absensi', compact('title'));
     }
 
     public function anggota_muda()
     {
-        return view('absensi.anggota_muda');
+        $title  = "Anggota Muda";
+        return view('absensi.anggota_muda', compact('title'));
     }
 
     public function store_anggota_muda(Request $request)
@@ -79,7 +81,8 @@ class AbsensiController extends Controller
 
     public function anggota_luar_biasa()
     {
-        return view('absensi.anggota_luar_biasa');
+        $title = "Anggota Luar Biasa";
+        return view('absensi.anggota_luar_biasa', compact('title'));
     }
 
     public function store_anggota_luar_biasa(Request $request)
@@ -143,7 +146,8 @@ class AbsensiController extends Controller
 
     public function lembaga_lainnya()
     {
-        return view('absensi.lembaga_lainnya');
+        $title = "Lembaga Lainnya";
+        return view('absensi.lembaga_lainnya', compact('title'));
     }
 
     public function store_lembaga_lainnya(Request $request)
