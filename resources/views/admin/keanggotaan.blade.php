@@ -27,26 +27,10 @@
                 class="mb-2">
                 Tambah Anggota Aktif
             </x-modal-button>
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm text-left border">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-2 border">Kode CX</th>
-                            <th class="px-4 py-2 border">Nama</th>
-                            {{-- <th class="px-4 py-2 border">Password</th> --}}
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @foreach ($hak_suaras as $hak_suara)
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-2 border">{{ $hak_suara->kode_cx }}</td>
-                                <td class="px-4 py-2 border">{{ $hak_suara->name }}</td>
-                                {{-- <td class="px-4 py-2 border">{{ $hak_suara->password }}</td> --}}
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+
+            @livewire('search-anggota-aktif')
+
+
         </div>
 
         <div id="anggota_muda" class="tab-content hidden">
