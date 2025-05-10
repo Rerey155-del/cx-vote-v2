@@ -1,4 +1,16 @@
 <x-admin-layout title="Keanggotaan">
+    <a href="javascript:void(0);" onclick="openAndPrintPDF();"
+            class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <img src="../img/print.svg" alt="" class="me-2">
+            Print Report
+        </a>
+
+
+        <a href="{{ route('dashboard-keanggotaan-report') }}" target="_blank"
+            class="text-white bg-[rgb(0,226,23)] hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2 dark:focus:ring-blue-800">
+            <img src="../img/view.svg" alt="" class="me-2">
+            View Report
+        </a>
     <div class=" mx-auto bg-white p-6 rounded-xl shadow-md">
         <!-- Tabs -->
         <div class="flex space-x-4 border-b mb-6">
@@ -194,6 +206,14 @@
             document.getElementById(tabName).classList.remove("hidden");
             evt.currentTarget.classList.remove("text-gray-600");
             evt.currentTarget.classList.add("text-blue-600", "border-b-2", "border-blue-600");
+        }
+
+        function openAndPrintPDF() {
+            const pdfWindow = window.open('{{ route('dashboard-keanggotaan-report') }}', '_blank');
+            pdfWindow.onload = function() {
+                pdfWindow.focus();
+                pdfWindow.print();
+            };
         }
     </script>
 </x-admin-layout>

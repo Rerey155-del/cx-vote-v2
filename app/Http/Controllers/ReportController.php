@@ -22,4 +22,14 @@ class ReportController extends Controller
         $pdf = Pdf::loadView('admin.report_pdf', compact('anggota_aktifs', 'albs', 'anggota_mudas', 'lembaga_lainnyas'));
         return $pdf->stream('report.pdf'); // langsung buka PDF di browser
     }
+
+    public function viewAnggotaPdf()
+    {
+        $anggota_aktifs = User::where('role', false)
+            ->orderBy('kode_cx', 'asc')
+            ->get();
+
+        $pdf = Pdf::loadView('admin.keanggotaan_report', compact('anggota_aktifs'));
+        return $pdf->stream('report.pdf'); // langsung buka PDF di browser
+    }
 }
