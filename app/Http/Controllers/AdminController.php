@@ -84,14 +84,10 @@ class AdminController extends Controller
             'nomor_urut' => 'required|unique:candidats,nomor_urut',
             'visi' => 'required',
             'misi' => 'required|string',
-            'image' => 'required'
+            'image' => 'required|image|max:2048'
         ]);
 
-        $file = $request->file('image');
-        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-
-        Storage::disk('public')->put('/' . $path, file_get_contents($file));
+        $path = $request->file('image')->store('candidates', 'public');
 
         Candidat::create([
             'ketua_name' => $request->ketua_name,
