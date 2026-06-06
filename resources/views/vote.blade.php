@@ -29,18 +29,19 @@
     </div>
 
     <div id="marquee" class="bg-blue-600 flex justify-center py-4">
-        <marquee style="font-family: 'Syne', sans-serif;" behavior="" direction="" scrollamount="20" class="text-white text-3xl font-bold">
+        <marquee style="font-family: 'Syne', sans-serif;" behavior="" direction="" scrollamount="20"
+            class="text-white text-3xl font-bold">
             Menggunakan hak suara dengan bijak merupakan sebuah tanggung jawab yang harus dipahami oleh setiap individu
             dalam sebuah organisasi yang demokratis.
         </marquee>
     </div>
 
-    <div class="text-center pt-10 w-full mb-32 bg-white">
+    <div class="text-center pt-10 w-full mb-12 bg-white">
 
         <h3 class="text-xl font-bold mb-4">Pilih Kandidatmu!</h3>
         <p class="mb-10">Suaramu hanya bisa digunakan sekali, jadi gunakanlah dengan bijak</p>
 
-        <div class="grid grid-cols-2 px-20 gap-6 items-center">
+        <div class="container mx-auto grid grid-cols-2 px-20 gap-6 items-center">
             {{-- foreach data kandidat --}}
             @foreach ($candidates as $candidate)
                 <div class="flex justify-center" {{-- data-aos="fade-up" --}}>
