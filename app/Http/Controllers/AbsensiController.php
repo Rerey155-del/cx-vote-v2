@@ -36,19 +36,21 @@ class AbsensiController extends Controller
         $jam = $now->hour;
         $today = $now->toDateString();
 
-        $anggota = AnggotaMuda::where('no_bp', $request->no_bp)
-            ->where('tanggal', $today)
+        // Cari record hari ini berdasarkan no_bp ATAU nama (case-insensitive)
+        $anggota = AnggotaMuda::where('tanggal', $today)
+            ->where(function ($query) use ($request) {
+                $query->where('no_bp', $request->no_bp)
+                      ->orWhere('name', $request->name);
+            })
             ->first();
 
         if ($jam >= 8 && $jam < 12) {
-            // Belum ada, buat baru dan langsung isi absen
             if (!$anggota) {
-                $anggota = AnggotaMuda::create([
+                AnggotaMuda::create([
                     'no_bp' => $request->no_bp,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_pagi' => $now->toTimeString(),
                 ]);
                 toast('Absen Pagi berhasil', 'success');
                 return Redirect::route('absensi');
@@ -58,17 +60,18 @@ class AbsensiController extends Controller
             }
         } elseif ($jam >= 12 && $jam < 17) {
             if (!$anggota) {
-                $anggota = AnggotaMuda::create([
+                // Belum absen pagi hari ini, buat record baru dengan siang
+                AnggotaMuda::create([
+                    'no_bp' => $request->no_bp,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_siang' => $now->toTimeString(),
                 ]);
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
-            } elseif ($anggota && $anggota->absen_siang == null) {
+            } elseif ($anggota->absen_siang == null) {
+                // Sudah absen pagi, update record yang sama dengan siang
                 $anggota->update(['absen_siang' => $now->toTimeString()]);
-
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
             } else {
@@ -90,27 +93,26 @@ class AbsensiController extends Controller
     public function store_anggota_luar_biasa(Request $request)
     {
         $request->validate([
-            'angkatan',
-            'name'
+            'angkatan' => 'required',
+            'name' => 'required'
         ]);
 
         $now = Carbon::now();
         $jam = $now->hour;
         $today = $now->toDateString();
 
-        $alb = AnggotaLuarBiasa::where('name', $request->name)
-            ->where('tanggal', $today)
+        // Cari record hari ini berdasarkan nama
+        $alb = AnggotaLuarBiasa::where('tanggal', $today)
+            ->where('name', $request->name)
             ->first();
 
         if ($jam >= 8 && $jam < 12) {
-            // Belum ada, buat baru dan langsung isi absen
             if (!$alb) {
-                $alb = AnggotaLuarBiasa::create([
+                AnggotaLuarBiasa::create([
                     'angkatan' => $request->angkatan,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_pagi' => $now->toTimeString(),
                 ]);
                 toast('Absen Pagi berhasil', 'success');
                 return Redirect::route('absensi');
@@ -120,19 +122,16 @@ class AbsensiController extends Controller
             }
         } elseif ($jam >= 12 && $jam < 17) {
             if (!$alb) {
-                $alb = AnggotaLuarBiasa::create([
+                AnggotaLuarBiasa::create([
                     'angkatan' => $request->angkatan,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_siang' => $now->toTimeString(),
                 ]);
-
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
-            } elseif ($alb && $alb->absen_siang == null) {
+            } elseif ($alb->absen_siang == null) {
                 $alb->update(['absen_siang' => $now->toTimeString()]);
-
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
             } else {
@@ -142,7 +141,6 @@ class AbsensiController extends Controller
         }
 
         toast('Waktu absen hanya antara jam 08.00 - 17.00.', 'warning');
-
         return Redirect::route('absensi');
     }
 
@@ -155,29 +153,27 @@ class AbsensiController extends Controller
     public function store_lembaga_lainnya(Request $request)
     {
         $request->validate([
-            'lembaga',
-            'name'
+            'lembaga' => 'required',
+            'name' => 'required'
         ]);
 
         $now = Carbon::now();
         $jam = $now->hour;
         $today = $now->toDateString();
 
-        $lembaga = LembagaLainnya::where('name', $request->name)
-            ->where('tanggal', $today)
+        // Cari record hari ini berdasarkan nama
+        $lembaga = LembagaLainnya::where('tanggal', $today)
+            ->where('name', $request->name)
             ->first();
 
         if ($jam >= 8 && $jam < 12) {
-            // Belum ada, buat baru dan langsung isi absen
             if (!$lembaga) {
-                $lembaga = LembagaLainnya::create([
+                LembagaLainnya::create([
                     'lembaga' => $request->lembaga,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_pagi' => $now->toTimeString(),
                 ]);
-
                 toast('Absen Pagi berhasil', 'success');
                 return Redirect::route('absensi');
             } else {
@@ -186,19 +182,16 @@ class AbsensiController extends Controller
             }
         } elseif ($jam >= 12 && $jam < 17) {
             if (!$lembaga) {
-                $lembaga = LembagaLainnya::create([
+                LembagaLainnya::create([
                     'lembaga' => $request->lembaga,
                     'name' => $request->name,
                     'tanggal' => $today,
-                    'absen_pagi' => ($jam >= 8 && $jam < 12) ? $now->toTimeString() : null,
-                    'absen_siang' => ($jam >= 12 && $jam <= 17) ? $now->toTimeString() : null,
+                    'absen_siang' => $now->toTimeString(),
                 ]);
-
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
-            } elseif ($lembaga && $lembaga->absen_siang == null) {
+            } elseif ($lembaga->absen_siang == null) {
                 $lembaga->update(['absen_siang' => $now->toTimeString()]);
-
                 toast('Absen Siang berhasil', 'success');
                 return Redirect::route('absensi');
             } else {
