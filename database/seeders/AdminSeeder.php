@@ -25,5 +25,7 @@ class AdminSeeder extends Seeder
                 'updated_at' => today()
             ]
         ]);
+
+        $this->command->info("Admin created -> Kode CX: 000-000 | Password: {$randomPassword}");
     }
 }
